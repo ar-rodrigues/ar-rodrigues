@@ -181,8 +181,8 @@ nav {
   height: 0;
   overflow: hidden;
   position: fixed;
-    top: 48%;
-    left: 68%;
+  top: 48%;
+  left: 68%;
   background: var(--clr-white);
   z-index: 10;
   transition: var(--transition);
@@ -211,7 +211,7 @@ nav {
   }
   .links-container {
     height: auto !important;
-    
+
     position: relative;
     top: 0;
     left: 0;
@@ -253,8 +253,8 @@ Home
   place-items: center;
   text-align: center;
   background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
-    url(grey-grade.png) center/cover,
-    url(backgroung-image.jpeg) center/cover;
+    url("https://photos.app.goo.gl/Wy7bvEw17eE1FnbH7") center/cover,
+    url("https://photos.app.goo.gl/4YKUm4y2BJcktS5D6") center/cover;
   background-blend-mode: multiply;
   position: block;
 }

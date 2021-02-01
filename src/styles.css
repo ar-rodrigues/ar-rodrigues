@@ -535,3 +535,12 @@ Skills
     height: 30vw;
   }
 }
+
+footer{
+  background: var(--clr-white);
+  box-shadow: var(--light-shadow);
+  width: 100vw;
+  height: 5vw;
+  display: grid;
+  place-items: center;
+}

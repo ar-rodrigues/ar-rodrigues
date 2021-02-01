@@ -39,6 +39,9 @@ function App() {
         </button>
         {activeSection[index]}
       </div>
+      <footer>
+        <h4>Criado por Alisson Rodrigues</h4>
+      </footer>
     </main>
   );
 }

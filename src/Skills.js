@@ -25,8 +25,9 @@ function Skills() {
               cx="50%"
               innerRadius="10%"
               outerRadius="70%"
-              width={450}
-              height={500}
+              width={350}
+              height={400}
+              margin={{ top: 0, right: 0, bottom: 5, left: 0 }}
               data={skills}
             >
               <PolarGrid />

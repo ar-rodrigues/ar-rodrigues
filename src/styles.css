@@ -551,13 +551,9 @@ Skills
 */
 .skill-section {
   background: black;
-  width: 90vw;
-  height: 100vw;
 }
 .skill-center {
   margin: 0;
-  left: 0;
-  width: 50vw;
   background: yellow;
   display: grid;
   place-items: center;

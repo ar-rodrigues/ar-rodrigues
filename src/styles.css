@@ -70,6 +70,32 @@ main {
   display: flex;
   flex-direction: column;
 }
+footer {
+  background: var(--clr-white);
+  box-shadow: var(--light-shadow);
+  width: 100vw;
+  height: 7vw;
+  display: grid;
+  place-items: center;
+}
+a {
+  padding: 0 6px 0 6px;
+  box-shadow: 0px 1px 0px white;
+  text-decoration: none;
+  color: var(--secondary);
+  font-family: var(--font-secondary);
+}
+
+a:hover {
+  padding: 0 6px 0 6px;
+  border-bottom: 2px solid lightgray;
+  transition: 1s;
+  font-family: var(--font-secondary);
+}
+
+a:visited {
+  color: gray;
+}
 ul {
   list-style-type: none;
 }
@@ -534,13 +560,4 @@ Skills
   .skill-center {
     height: 30vw;
   }
-}
-
-footer{
-  background: var(--clr-white);
-  box-shadow: var(--light-shadow);
-  width: 100vw;
-  height: 5vw;
-  display: grid;
-  place-items: center;
 }

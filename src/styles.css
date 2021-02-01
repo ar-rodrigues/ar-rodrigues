@@ -548,11 +548,12 @@ Experiences
 /*
 Skills
 */
+
 .skill-center {
   margin: 0;
   display: grid;
   place-items: center;
-  width: 95vw;
+  width: 90vw;
   height: 95vw;
 }
 .skill-center svg {

@@ -207,8 +207,8 @@ nav {
   height: 0;
   overflow: hidden;
   position: fixed;
-  top: 48%;
-  left: 68%;
+  top: 52%;
+  left: 63%;
   background: var(--clr-white);
   z-index: 10;
   transition: var(--transition);
@@ -550,7 +550,10 @@ Skills
 */
 .skill-center {
   margin: 0;
-  height: 100vw;
+  display: grid;
+  place-items: center;
+  width: 95vw;
+  height: 95vw;
 }
 .skill-center svg {
   margin: 0;

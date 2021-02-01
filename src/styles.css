@@ -553,11 +553,11 @@ Skills
   margin: 0;
   display: grid;
   place-items: center;
-  width: 90vw;
-  height: 95vw;
 }
 .skill-center svg {
   margin: 0;
+  background: red;
+  width: 70vw;
 }
 
 @media screen and (min-width: 992px) {

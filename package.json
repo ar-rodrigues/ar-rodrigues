@@ -1,7 +1,7 @@
 {
-  "name": "react-resume",
+  "name": "resume-finished",
   "version": "1.0.0",
-  "description": "Resume build on React",
+  "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {

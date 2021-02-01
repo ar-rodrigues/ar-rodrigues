@@ -549,22 +549,19 @@ Experiences
 /*
 Skills
 */
-.skill-section {
-  background: black;
-}
+
 .skill-center {
   margin: 0;
-  background: yellow;
   display: grid;
   place-items: center;
 }
 .skill-center svg {
   margin: 0;
-  background: red;
 }
 
 @media screen and (min-width: 992px) {
   .skill-center {
-    height: 30vw;
+    width: 30vw;
+    height: 25vw;
   }
 }

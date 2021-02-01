@@ -551,6 +551,8 @@ Skills
 
 .skill-center {
   margin: 0;
+  left: 0;
+  background: yellow;
   display: grid;
   place-items: center;
 }

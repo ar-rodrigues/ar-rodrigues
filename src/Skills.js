@@ -11,7 +11,7 @@ import { skills } from "./data";
 
 function Skills() {
   return (
-    <section>
+    <section className="skill-section">
       <div className="title">
         <h2>Hablidades</h2>
       </div>

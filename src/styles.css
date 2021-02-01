@@ -387,6 +387,7 @@ Buttons for Alternate Sections
   border-radius: var(--radius);
   cursor: pointer;
   transition: var(--transition);
+  z-index: 9;
 }
 .prev:hover,
 .next:hover {
@@ -416,7 +417,7 @@ Experiences
 .experiences {
   width: 95vw;
   position: block;
-  margin: 3vw auto 10vw auto;
+  margin: 0vw auto 10vw auto;
   padding: 2vw 0 10vw 0;
   max-width: var(--max-width);
   display: grid;
@@ -548,10 +549,15 @@ Experiences
 /*
 Skills
 */
-
+.skill-section {
+  background: black;
+  width: 90vw;
+  height: 100vw;
+}
 .skill-center {
   margin: 0;
   left: 0;
+  width: 50vw;
   background: yellow;
   display: grid;
   place-items: center;
@@ -559,7 +565,6 @@ Skills
 .skill-center svg {
   margin: 0;
   background: red;
-  width: 70vw;
 }
 
 @media screen and (min-width: 992px) {

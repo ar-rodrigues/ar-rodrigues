@@ -277,16 +277,15 @@ Home
   width: 100vw;
   height: 50vw;
   display: grid;
+  position: block;
   font-size: auto;
   place-items: center;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
-    url("https://cdn.pixabay.com/photo/2017/08/20/10/47/grey-2661270_960_720.png")
-      center/cover,
-    url("https://images.unsplash.com/photo-1522648485144-849409408aee?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ")
-      center/cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+    url("/grey-2661270.png"), url("/back-to-work.jpg");
+  background-size: 100vw;
+  background-position: center;
   background-blend-mode: multiply;
-  position: block;
 }
 .header-box {
   width: 80vw;

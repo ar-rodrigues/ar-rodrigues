@@ -281,8 +281,6 @@ Home
   font-size: auto;
   place-items: center;
   text-align: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
-    url("/grey-2661270.png"), url("/back-to-work.jpg");
   background-size: 100vw;
   background-position: center;
   background-blend-mode: multiply;

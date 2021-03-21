@@ -7,13 +7,13 @@ import {
   Radar,
   PolarGrid
 } from "recharts";
-import { skills } from "./data";
+import { skills, links } from "./data";
 
 function Skills() {
   return (
     <section>
       <div className="title">
-        <h2>Hablidades</h2>
+        <h2>Habilidades</h2>
       </div>
       <div>
         <article className="skill-center">
@@ -30,7 +30,6 @@ function Skills() {
               margin={{ top: 0, right: 0, bottom: 5, left: 0 }}
               data={skills}
               fill="#223f99"
-              
             >
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />

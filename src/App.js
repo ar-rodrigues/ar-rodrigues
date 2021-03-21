@@ -44,12 +44,26 @@ function App() {
         <h3>
           Quer saber mais? <br /> Entre em contato comigo!
         </h3>
-        <form id="contact" className="contact-form" method="POST" netlify-honeypot="data-field" data-netlify="true">
+        <form
+          id="contact"
+          className="contact-form"
+          netlify-honeypot="data-field"
+          data-netlify="true"
+          onSubmit={(e) => {
+            e.preventDefault();
+            window.alert("Mensagem Enviada!");
+          }}
+        >
           <div className="form-itens">
             {/*H O N E Y P O T */}
             <div className="honey">
               <label htmlFor="data"></label>
-              <input name="data-field" autoComplete="off" type="text" id="data"/>
+              <input
+                name="data-field"
+                autoComplete="off"
+                type="text"
+                id="data"
+              />
             </div>
 
             <label htmlFor="name" id="name" className="form-label">
@@ -104,7 +118,7 @@ function App() {
         </ul>
       </section>
       <footer>
-        <h4>{'</> Criado por Alisson Rodrigues </>'}</h4>
+        <h4>{"</> Criado por Alisson Rodrigues </>"}</h4>
       </footer>
     </main>
   );

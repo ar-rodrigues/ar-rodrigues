@@ -47,6 +47,7 @@ function App() {
         <form
           id="contact"
           className="contact-form"
+          method="POST"
           netlify-honeypot="data-field"
           data-netlify="true"
           onSubmit={(e) => {

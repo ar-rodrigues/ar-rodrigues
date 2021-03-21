@@ -1,23 +1,11 @@
 import React from "react";
-import { social, infos } from "./data";
+import { infos } from "./data";
 
 function About() {
   return (
     <section 
     id='about'
     className="about">
-      <article className="contact-box">
-        <ul className="social-contact">
-          {social.map((socialIcon) => {
-            const { id, url, icon } = socialIcon;
-            return (
-              <li key={id}>
-                <a href={url}>{icon}</a>
-              </li>
-            );
-          })}
-        </ul>
-      </article>
 
       {infos.map((infoItem) => {
         const { id, name, birth, about, photo } = infoItem;

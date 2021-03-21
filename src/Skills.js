@@ -29,6 +29,8 @@ function Skills() {
               height={400}
               margin={{ top: 0, right: 0, bottom: 5, left: 0 }}
               data={skills}
+              fill="#223f99"
+              
             >
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />
@@ -36,8 +38,8 @@ function Skills() {
               <Radar
                 name="Habilidades"
                 dataKey="nivel"
-                stroke="#2884d8"
-                fill="#2884d8"
+                stroke="#223f99"
+                fill="#223f99"
                 fillOpacity={0.6}
               />
               <Legend />

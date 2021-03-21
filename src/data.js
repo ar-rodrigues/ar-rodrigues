@@ -33,17 +33,20 @@ export const social = [
   {
     id: 1,
     url: "https://www.linkedin.com/in/alisson-rodrigues/",
-    icon: <FaLinkedin />
+    icon: <FaLinkedin />,
+    name: "LinkedIn"
   },
   {
     id: 2,
     url: "https://github.com/ar-rodrigues",
-    icon: <FaGithubSquare />
+    icon: <FaGithubSquare />,
+    name: "Github"
   },
   {
     id: 3,
     url: "https://medium.com/@Alisson.R",
-    icon: <FaMedium />
+    icon: <FaMedium />,
+    name: "Medium"
   }
 ];
 //
@@ -55,7 +58,7 @@ export const experiences = [
     dates: "Setembro 2019 - Fevereiro 2019",
     duties: [
       "Atividade voluntária.",
-      "Elaboração de materiais e estratégia de divulgação, publicação em redes sociais."
+      "Elaborava materiais e estratégia de divulgação e publicacava em redes sociais."
     ],
     company: "Nossa Casa"
   },
@@ -66,9 +69,9 @@ export const experiences = [
     dates: "Agosto 2018 - Setembro 2019",
     duties: [
       "Bolsista de iniciação científica.",
-      'Auxílio no projeto "Ação empreendedora em pequenas e médias empresas de base tecnológica".',
-      "Desenvolvimento de atividades de pesquisa, tais como entrevistas, elaboração de relatórios e tarefas administrativas.",
-      'Elaboração e apresentação do trabalho "Um estudo etnográfico sobre a ação empreendedora em startups, Brasil e México" no Salão de Iniciação Científica da UFRGS.'
+      'Auxíliei no projeto "Ação empreendedora em pequenas e médias empresas de base tecnológica".',
+      "Desenvolvi atividades de pesquisa, tais como entrevistas, elaboração de relatórios e tarefas administrativas.",
+      'Elaborei e apresentei o trabalho "Um estudo etnográfico sobre a ação empreendedora em startups, Brasil e México" no Salão de Iniciação Científica da UFRGS.'
     ],
     company: "GPSET"
   },
@@ -79,8 +82,8 @@ export const experiences = [
     dates: "Julho 2019 - Setembro 2019",
     duties: [
       "Trainee internacional na cidade de Puebla no México, na área de marketing.",
-      "Administrar campanhas PPC no Facebook.",
-      "Criar, administrar, monitorar e otimizar campanhas no Facebook."
+      "Administrava campanhas PPC no Facebook.",
+      "Criava, administrava, monitorava e otimizava campanhas no Facebook."
     ],
     company: "WPBR"
   },
@@ -90,9 +93,9 @@ export const experiences = [
     title: "Núcleo Estudos em Inovação (NITEC - UFRGS)",
     dates: "Janeiro 2017 - Julho 2018",
     duties: [
-      'Auxílio nos projetos "Caminhos da inovação na indústria" e "Caminhos da inovação no agronegócio".',
-      "Divulgação dos projetos, elaboração de relatórios, apresentações e tarefas administrativas.",
-      'Elaboração e apresentação dos trabalhos "O desenvolvimento de produtos premium em empresas do setor alimentício" e "Agregação de valor no setor de alimentos por meio da experiência do usuário".'
+      'Auxíliei nos projetos "Caminhos da inovação na indústria" e "Caminhos da inovação no agronegócio".',
+      "Auxíliei na divulgação dos projetos, elaboração de relatórios, apresentações e tarefas administrativas.",
+      'Elaborei e apresentei os trabalhos "O desenvolvimento de produtos premium em empresas do setor alimentício" e "Agregação de valor no setor de alimentos por meio da experiência do usuário".'
     ],
     company: "NITEC"
   },
@@ -102,7 +105,7 @@ export const experiences = [
     title: "Equilíbrio Assessoria Econômica",
     dates: "Setembro 2016 - Maio 2017",
     duties: [
-      "Trabalhos no setor de projetos e no setor financeiro, auxiliando nas atividades da Empresa Júnior."
+      "Trabalhei no setor de projetos e no setor financeiro, auxiliando nas atividades da Empresa Júnior."
     ],
     company: "Equilíbrio"
   },
@@ -112,8 +115,8 @@ export const experiences = [
     title: "Exército Brasileiro",
     dates: "Março 2013 - Fevereiro 2016",
     duties: [
-      "Como 3º Sargento de Comunicações, atuação no planejamento e execução de operações de campo, instalação da parte elétrica de campo, rádio e comunicação, assim como tarefas administrativas.",
-      "Planejamento e liderança de grupamentos para atuação dentro e fora do aquartelamento, em situações de campo e operacionais."
+      "Como 3º Sargento de Comunicações, atuei no planejamento e execução de operações de campo, instalação da parte elétrica de campo, rádio e comunicação, assim como tarefas administrativas.",
+      "Planejei e liderei grupamentos para atuação dentro e fora do aquartelamento, em situações de campo e operacionais."
     ],
     company: "Exército"
   }
@@ -129,7 +132,7 @@ export const courses = [
     names: [
       "Bacharelado em Ciências Sociais no Instituto de Filosofia e Ciências Sociais da Universidade Federal do Rio Grande do Sul"
     ],
-    certified: []
+    certified: [],
   },
   {
     id: "marketing",
@@ -210,6 +213,6 @@ export const infos = [
     photo:
       "https://lh3.googleusercontent.com/pw/ACtC-3fFEeC-7dVdDJVXEqhtUiUbXS3LzzYMT4gkf_uo-JfzKTM9-6VGyAoWQTuE0mXItvnQ0ZXXG_t6Rhrc_E5jLt5IYpswTQqdZ-J7pAomjs7XLa1TjYpq6gsZxG4GQq6ECWxMRvbZnLEv-ZlL9OpEgZlMeQ=w908-h681-no?authuser=0",
     about:
-      'Aprender, evoluir e explorar limites são os condutores de todas as experiências que escolhi. Buscar novos conhecimentos são os objetivos em todas as atividades que empreendo. Meus interesses são um misto de muitas áreas. Vão da sociedade, economia e inovação, até o marketing e programação. Acredito que a inovação depende do fluxo constante entre diferentes campos. Afinal como já dizia Lavoisier: "na natureza nada se cria e nada se perde, tudo se transforma".'
+      'Aprender, evoluir e explorar limites são os condutores de todas as experiências que escolhi. Buscar novos conhecimentos é o objetivo em todas as atividades que empreendo. Meus interesses são um misto de muitas áreas. Vão da sociedade, economia e inovação, até o marketing e programação. Acredito que a inovação depende do fluxo constante entre diferentes campos. Afinal como já dizia Lavoisier: "na natureza nada se cria e nada se perde, tudo se transforma".'
   }
 ];

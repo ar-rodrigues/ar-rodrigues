@@ -47,19 +47,19 @@ function Contact() {
         name="contact"
         method="POST"
         className="contact-form"
-        netlify-honeypot="data-field"
+        netlify-honeypot="bot-field"
         onSubmit={(e) => handleSubmit(e)}
         data-netlify="true"
       >
         <div className="form-itens">
           {/*H O N E Y P O T */}
           <div className="honey">
-            <label htmlFor="data"></label>
+            <label htmlFor="bot-field"></label>
             <input
-              name="data"
+              name="bot-field"
               autoComplete="off"
               type="text"
-              id="data"
+              id="bot-field"
               value={fields.data}
               onChange={(e) => handleChange(e)}
             />

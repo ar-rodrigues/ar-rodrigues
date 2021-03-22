@@ -43,6 +43,7 @@ function Contact() {
         Quer saber mais? <br /> Entre em contato comigo!
       </h3>
       <form
+        action="/contact"
         id="contact"
         name="contact"
         method="POST"

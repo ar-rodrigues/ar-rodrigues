@@ -27,22 +27,14 @@ function Contact() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...fields })
-    })
-      .then(() => alert("Success!"))
-      .then(() =>
-        setFields({
-          id: "",
-          data: "",
-          name: "",
-          email: "",
-          message: ""
-        })
-      )
-      .catch((error) => alert(error));
+    setFields(fields);
+    setFields({
+      id: "",
+      data: "",
+      name: "",
+      email: "",
+      message: ""
+    });
   };
 
   return (
@@ -115,7 +107,11 @@ function Contact() {
           required
         />
 
-        <button className="form-button" type="submit">
+        <button
+          className="form-button"
+          type="submit"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           Enviar
         </button>
       </form>

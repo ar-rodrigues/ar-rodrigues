@@ -53,6 +53,7 @@ function Contact() {
       <form
         id="contact"
         name="contact"
+        method="POST"
         className="contact-form"
         netlify-honeypot="data-field"
         onSubmit={(e) => handleSubmit(e)}

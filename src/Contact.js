@@ -39,6 +39,7 @@ function Contact() {
       </h3>
       <form
         id="contact"
+        name="contact"
         className="contact-form"
         method="POST"
         netlify-honeypot="data-field"

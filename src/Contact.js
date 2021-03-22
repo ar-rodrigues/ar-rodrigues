@@ -62,6 +62,7 @@ function Contact() {
         <div className="form-itens">
           {/*H O N E Y P O T */}
           <div className="honey">
+            <input type="hidden" name="form-name" value="contact" />
             <label htmlFor="data"></label>
             <input
               name="data"

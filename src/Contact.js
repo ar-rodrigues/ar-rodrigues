@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import "./styles.css";
 import { social } from "./data";
 
-const idGen = () => {
-  return new Date().getTime().toString();
-};
 const encode = (data) => {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -13,7 +10,6 @@ const encode = (data) => {
 
 function Contact() {
   const [fields, setFields] = useState({
-    id: "",
     data: "",
     name: "",
     email: "",
@@ -23,13 +19,12 @@ function Contact() {
   const handleChange = (e) => {
     let name = e.target.name;
     const value = e.target.value;
-    setFields({ ...fields, id: idGen(), [name]: value });
+    setFields({ ...fields, data: "", [name]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     setFields(fields);
     setFields({
-      id: "",
       data: "",
       name: "",
       email: "",
@@ -43,10 +38,9 @@ function Contact() {
         Quer saber mais? <br /> Entre em contato comigo!
       </h3>
       <form
-        action="/contact"
         id="contact"
         name="contact"
-        method="POST"
+        method="post"
         className="contact-form"
         netlify-honeypot="bot-field"
         onSubmit={(e) => handleSubmit(e)}

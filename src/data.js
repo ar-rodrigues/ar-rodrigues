@@ -137,7 +137,7 @@ export const courses = [
     names: [
       "Bacharelado em Ciências Sociais no Instituto de Filosofia e Ciências Sociais da Universidade Federal do Rio Grande do Sul"
     ],
-    certified: [],
+    certified: []
   },
   {
     id: "marketing",
@@ -218,6 +218,6 @@ export const infos = [
     photo:
       "https://lh3.googleusercontent.com/pw/ACtC-3fFEeC-7dVdDJVXEqhtUiUbXS3LzzYMT4gkf_uo-JfzKTM9-6VGyAoWQTuE0mXItvnQ0ZXXG_t6Rhrc_E5jLt5IYpswTQqdZ-J7pAomjs7XLa1TjYpq6gsZxG4GQq6ECWxMRvbZnLEv-ZlL9OpEgZlMeQ=w908-h681-no?authuser=0",
     about:
-      'Aprender, evoluir e explorar limites são os condutores de todas as experiências que escolhi. Buscar novos conhecimentos é o objetivo em todas as atividades que empreendo. Meus interesses são um misto de muitas áreas. Vão da sociedade, economia e inovação, até o marketing e programação. Acredito que a inovação depende do fluxo constante entre diferentes campos. Afinal como já dizia Lavoisier: "na natureza nada se cria e nada se perde, tudo se transforma".'
+      'Aprender, evoluir e explorar limites são os condutores de todas as experiências que escolhi. Buscar novos conhecimentos é o objetivo em todas as atividades que empreendo. Meus interesses são um misto de muitas áreas. Vão da sociedade, economia e inovação, até o marketing e programação. Acredito que a inovação depende do fluxo constante entre diferentes campos. Como disse Lavoisier: "na natureza nada se cria e nada se perde, tudo se transforma".'
   }
 ];

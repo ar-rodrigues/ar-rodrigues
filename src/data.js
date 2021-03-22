@@ -26,6 +26,11 @@ export const links = [
     id: 4,
     url: "#experiences",
     text: "Habilidades"
+  },
+  {
+    id: 5,
+    url: "#contact-box",
+    text: "Contato"
   }
 ];
 

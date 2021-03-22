@@ -42,7 +42,7 @@ function Contact() {
   };
 
   return (
-    <section className="contact-box">
+    <section id="contact-box" className="contact-box">
       <h3>
         Quer saber mais? <br /> Entre em contato comigo!
       </h3>

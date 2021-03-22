@@ -62,7 +62,6 @@ function Contact() {
         <div className="form-itens">
           {/*H O N E Y P O T */}
           <div className="honey">
-            <input type="hidden" name="form-name" value="contact" />
             <label htmlFor="data"></label>
             <input
               name="data"
@@ -73,7 +72,7 @@ function Contact() {
               onChange={(e) => handleChange(e)}
             />
           </div>
-
+          <input type="hidden" name="form-name" value="contact" />
           <label htmlFor="name" id="name" className="form-label">
             Nome:
           </label>

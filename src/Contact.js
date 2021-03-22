@@ -5,6 +5,11 @@ import { social } from "./data";
 const idGen = () => {
   return new Date().getTime().toString();
 };
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
 
 function Contact() {
   const [fields, setFields] = useState({
@@ -22,21 +27,22 @@ function Contact() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFields(fields);
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...fields })
     })
       .then(() => alert("Success!"))
+      .then(() =>
+        setFields({
+          id: "",
+          data: "",
+          name: "",
+          email: "",
+          message: ""
+        })
+      )
       .catch((error) => alert(error));
-    setFields({
-      id: "",
-      data: "",
-      name: "",
-      email: "",
-      message: ""
-    });
   };
 
   return (

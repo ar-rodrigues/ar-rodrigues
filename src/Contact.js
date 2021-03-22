@@ -23,6 +23,13 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFields(fields);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...fields })
+    })
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
     setFields({
       id: "",
       data: "",
@@ -41,7 +48,6 @@ function Contact() {
         id="contact"
         name="contact"
         className="contact-form"
-        method="POST"
         netlify-honeypot="data-field"
         onSubmit={(e) => handleSubmit(e)}
         data-netlify="true"

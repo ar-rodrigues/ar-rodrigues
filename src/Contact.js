@@ -22,14 +22,23 @@ function Contact() {
     setFields({ ...fields, data: "", [name]: value });
   };
   const handleSubmit = (e) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...fields })
+    })
+      .then(() => alert("Mensagem enviada!"))
+      .then(() =>
+        setFields({
+          data: "",
+          name: "",
+          email: "",
+          message: ""
+        })
+      )
+      .catch((error) => alert(error));
+
     e.preventDefault();
-    setFields(fields);
-    setFields({
-      data: "",
-      name: "",
-      email: "",
-      message: ""
-    });
   };
 
   return (

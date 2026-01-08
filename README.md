@@ -1,72 +1,92 @@
 # Alisson Rodrigues CV
 
-Un proyecto de currículum vitae personal desarrollado con Next.js 15, Tailwind CSS 4 y autenticación con Supabase.
+**Interactive Curriculum Vitae** - This is the repository for Alisson Rodrigues' personal CV, developed as a modern web application with Next.js 15, Tailwind CSS 4, and Supabase authentication.
 
-## 🚀 Características
+**Read in other languages:** [Español](README.es.md) | [Português](README.pt.md)
 
-- **Next.js 15** - Framework de React con App Router
-- **Tailwind CSS 4** - Framework de CSS utility-first
-- **Autenticación** - Sistema de login/logout con Supabase
-- **Responsive Design** - Interfaz adaptativa para todos los dispositivos
-- **Estructura Organizada** - Código limpio y bien estructurado
-- **Iconos React** - Biblioteca de iconos moderna y ligera
-- **Nodemailer** - Sistema de envío de emails configurado
+## 🌐 View Live CV
 
-## 🛠️ Tecnologías
+**👉 [View my CV online](https://alisson-rodrigues.netlify.app/)**
+
+This project represents my professional curriculum vitae in an interactive web format, where you can explore my experience, skills, education, and project portfolio.
+
+## 📋 About this CV
+
+This is my professional curriculum vitae presented as a modern web application. It includes sections for:
+
+- **About Me** - Personal and professional information
+- **Experience** - Work history and featured projects
+- **Education & Courses** - Academic background and certifications
+- **Skills** - Technologies and technical competencies
+- **Portfolio** - Completed projects with links and demonstrations
+- **Contact** - Integrated contact form
+
+## 🚀 Technical Features
+
+- **Next.js 15** - React framework with App Router
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Authentication** - Login/logout system with Supabase
+- **Responsive Design** - Adaptive interface for all devices
+- **Multilingual** - Support for Spanish, English, and Portuguese
+- **Organized Structure** - Clean and well-structured code
+- **React Icons** - Modern and lightweight icon library
+- **Nodemailer** - Configured email sending system
+
+## 🛠️ Technologies
 
 - Next.js 15.4.6
 - React 19.1.0
 - Tailwind CSS 4.1.11
-- Supabase (autenticación y base de datos)
+- Supabase (authentication and database)
 - React Icons
-- Nodemailer (envío de emails)
+- Nodemailer (email sending)
 
-## 🚀 Comenzar
+## 🚀 Getting Started
 
-Primero, ejecuta el servidor de desarrollo:
+First, run the development server:
 
 ```bash
 npm run dev
-# o
+# or
 yarn dev
-# o
+# or
 pnpm dev
-# o
+# or
 bun dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 app/
-├── (public)/          # Rutas públicas
-│   ├── page.js        # Página principal
-│   ├── login/         # Sistema de autenticación
-│   └── error/         # Página de error
-├── (private)/         # Rutas privadas
-│   └── private/       # Dashboard protegido
-└── globals.css        # Estilos globales
+├── (public)/          # Public routes
+│   ├── page.js        # Main page
+│   ├── login/         # Authentication system
+│   └── error/         # Error page
+├── (private)/         # Private routes
+│   └── private/       # Protected dashboard
+└── globals.css        # Global styles
 
-components/             # Componentes reutilizables
-utils/                  # Utilidades y configuración
-├── supabase/          # Cliente y configuración de Supabase
-└── mailer/            # Sistema de envío de emails
+components/             # Reusable components
+utils/                  # Utilities and configuration
+├── supabase/          # Supabase client and configuration
+└── mailer/            # Email sending system
 ```
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-1. Configura las variables de entorno para Supabase
-2. Personaliza los estilos en `app/globals.css`
-3. Modifica los componentes según tus necesidades
-4. Añade nuevas funcionalidades al dashboard
+1. Configure environment variables for Supabase
+2. Customize styles in `app/globals.css`
+3. Modify components according to your needs
+4. Add new features to the dashboard
 
 ## 📧 Nodemailer
 
-El proyecto incluye **Nodemailer** configurado para el envío de emails. Está ubicado en `utils/mailer/` y incluye:
+The project includes **Nodemailer** configured for sending emails. It's located in `utils/mailer/` and includes:
 
-### Configuración Básica
+### Basic Configuration
 
 ```javascript
 // utils/mailer/mailer.js
@@ -75,7 +95,7 @@ import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransporter({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
-  secure: true, // true para 465, false para otros puertos
+  secure: true, // true for 465, false for other ports
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -83,49 +103,49 @@ const transporter = nodemailer.createTransporter({
 });
 ```
 
-### Variables de Entorno Requeridas
+### Required Environment Variables
 
 ```env
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
-SMTP_USER=tu-email@gmail.com
-SMTP_PASS=tu-contraseña-de-aplicación
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
 ```
 
-### Uso Básico
+### Basic Usage
 
 ```javascript
 import { sendEmail } from "@/utils/mailer/mailer";
 
-// Enviar email simple
+// Send simple email
 await sendEmail({
-  to: "destinatario@email.com",
-  subject: "Asunto del email",
-  html: "<h1>Contenido HTML</h1>",
+  to: "recipient@email.com",
+  subject: "Email subject",
+  html: "<h1>HTML content</h1>",
 });
 
-// Usar plantillas predefinidas
+// Use predefined templates
 import { sendWelcomeEmail } from "@/utils/mailer/templates/welcomeEmail";
-await sendWelcomeEmail("usuario@email.com", "Nombre Usuario");
+await sendWelcomeEmail("user@email.com", "User Name");
 ```
 
-### Plantillas Disponibles
+### Available Templates
 
-- **welcomeEmail.js** - Email de bienvenida para nuevos usuarios
-- Fácil de personalizar y extender según tus necesidades
+- **welcomeEmail.js** - Welcome email for new users
+- Easy to customize and extend according to your needs
 
-## 📚 Aprender Más
+## 📚 Learn More
 
-Para aprender más sobre Next.js, consulta estos recursos:
+To learn more about Next.js, check out these resources:
 
-- [Documentación de Next.js](https://nextjs.org/docs)
-- [Tutorial de Next.js](https://nextjs.org/learn)
-- [Repositorio de Next.js](https://github.com/vercel/next.js)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js Tutorial](https://nextjs.org/learn)
+- [Next.js Repository](https://github.com/vercel/next.js)
 
-## 🚀 Desplegar
+## 🚀 Deploy
 
-La forma más fácil de desplegar tu aplicación Next.js es usar [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+The easiest way to deploy your Next.js application is to use [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto está bajo la Licencia MIT.
+This project is under the MIT License.

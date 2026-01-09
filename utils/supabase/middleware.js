@@ -41,9 +41,17 @@ export async function updateSession(request) {
   } = await supabase.auth.getUser();
 
   if (!user && !isPublicRoute(request.nextUrl.pathname)) {
-    // no user, potentially respond by redirecting the user to the login page
+    // no user, redirect to home page
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+
+    // Preserve locale if present
+    const supportedLocales = ["es", "en", "pt"];
+    const pathParts = request.nextUrl.pathname.split("/");
+    const currentLocale = supportedLocales.includes(pathParts[1])
+      ? pathParts[1]
+      : "";
+
+    url.pathname = currentLocale ? `/${currentLocale}` : "/";
     return NextResponse.redirect(url);
   }
 

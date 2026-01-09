@@ -11,6 +11,7 @@ import Skills from "@/components/Skills";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import BackgroundWave from "@/components/BackgroundWave";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Map index to link ID: 0 -> 2 (Experiencia), 1 -> 3 (Cursos), 2 -> 4 (Habilidades)
@@ -22,6 +23,9 @@ export default function HomePage() {
   const [direction, setDirection] = useState(null); // Track navigation direction: 'left' or 'right'
   const [isAnimating, setIsAnimating] = useState(false); // Prevent rapid clicks during animation
   const isInitialized = useRef(false);
+  const hasScrolledToHash = useRef(false);
+  const scrollRetryCount = useRef(0);
+  const initialHashRef = useRef(null);
   const { t, isLoading } = useLanguage();
 
   const activeSection = [
@@ -42,10 +46,14 @@ export default function HomePage() {
 
   // Initialize from URL hash on mount (only once)
   useEffect(() => {
-    if (isInitialized.current) return;
+    if (isInitialized.current || isLoading) return;
 
     const hash = window.location.hash.replace("#", "");
     const links = t("links");
+    // Store the initial hash in a ref so we can use it even if URL changes later
+    if (hash && !initialHashRef.current) {
+      initialHashRef.current = hash;
+    }
 
     if (hash) {
       // If there's a hash, use it to set the active link
@@ -64,7 +72,51 @@ export default function HomePage() {
     }
 
     isInitialized.current = true;
-  }, [t]);
+  }, [t, isLoading]);
+
+  // Scroll to hash section on initial page load
+  useEffect(() => {
+    if (isLoading || !isInitialized.current || hasScrolledToHash.current)
+      return;
+
+    // Use stored hash from ref instead of reading from URL (which might have changed)
+    const hash =
+      initialHashRef.current || window.location.hash.replace("#", "");
+    if (!hash || hash === "home") {
+      hasScrolledToHash.current = true;
+      return;
+    }
+
+    // Wait for DOM to be ready
+    const performScroll = () => {
+      const targetElement = document.getElementById(hash);
+
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const offsetTop = window.pageYOffset + rect.top - 80;
+        const scrollDiff = Math.abs(window.pageYOffset - offsetTop);
+
+        // Only scroll if we are not already roughly there
+        if (scrollDiff > 50) {
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+        hasScrolledToHash.current = true;
+      } else {
+        scrollRetryCount.current++;
+        if (scrollRetryCount.current < 20) {
+          setTimeout(performScroll, 200);
+        } else {
+          hasScrolledToHash.current = true;
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(performScroll, 500);
+    return () => clearTimeout(timeoutId);
+  }, [isLoading]); // Removed 'index' from dependencies - we only want to scroll once on initial load
 
   // Update URL hash when activeLinkId changes (only after initialization)
   useEffect(() => {
@@ -140,6 +192,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <BackgroundWave />
       <Navbar
         setIndex={setIndex}
         currentIndex={index}

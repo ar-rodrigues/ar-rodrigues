@@ -7,6 +7,17 @@ export const metadata = {
   title: "Alisson Rodrigues CV",
   description:
     "Un proyecto base completo y listo para usar con Next.js 15, Tailwind CSS 4 y autenticación",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },

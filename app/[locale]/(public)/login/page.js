@@ -11,6 +11,7 @@ import {
   RiArrowLeftLine,
 } from "react-icons/ri";
 import { createClient } from "@/utils/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { login, signup } from "./actions";
 
 export default function LoginPage() {
@@ -27,6 +28,7 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
+  const { locale } = useLanguage();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -35,7 +37,7 @@ export default function LoginPage() {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        router.push("/private");
+        router.push(`/${locale}/private`);
       }
     };
     checkUser();
@@ -45,7 +47,7 @@ export default function LoginPage() {
     if (message === "signup_success") {
       setShowSuccess(true);
     }
-  }, [supabase.auth, router, searchParams]);
+  }, [supabase.auth, router, searchParams, locale]);
 
   const validateForm = (type) => {
     const newErrors = {};
@@ -90,6 +92,7 @@ export default function LoginPage() {
     const formDataObj = new FormData();
     formDataObj.append("email", formData.email);
     formDataObj.append("password", formData.password);
+    formDataObj.append("locale", locale);
 
     startTransition(async () => {
       try {
@@ -110,6 +113,7 @@ export default function LoginPage() {
     const formDataObj = new FormData();
     formDataObj.append("email", formData.email);
     formDataObj.append("password", formData.password);
+    formDataObj.append("locale", locale);
 
     startTransition(async () => {
       try {
@@ -155,14 +159,14 @@ export default function LoginPage() {
               </p>
               <div className="space-y-3">
                 <button
-                  onClick={() => router.push("/")}
+                  onClick={() => router.push(`/${locale}`)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors cursor-pointer"
                 >
                   Volver al Inicio
                 </button>
                 <button
                   onClick={() => {
-                    router.replace("/login");
+                    router.replace(`/${locale}/login`);
                     setShowSuccess(false);
                   }}
                   className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 cursor-pointer"

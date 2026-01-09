@@ -73,3 +73,63 @@ export async function sendWelcomeEmail(email, name, password, baseUrl) {
     throw error;
   }
 }
+
+export async function sendContactEmail(name, email, message, recipientEmail) {
+  try {
+    const port = process.env.EMAIL_PORT || "587";
+    const secure = port === "465";
+
+    const transporter = nodemailer.createTransport({
+      service: process.env.EMAIL_SERVICE,
+      host: process.env.EMAIL_HOST,
+      port,
+      secure,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    // Verify transporter configuration
+    try {
+      await transporter.verify();
+      console.log("Email transporter verified successfully");
+    } catch (verifyError) {
+      console.error("Email transporter verification failed:", verifyError);
+      throw verifyError;
+    }
+
+    const contactEmailBody = `
+      <h2>Nuevo mensaje de contacto</h2>
+      <p><strong>Nombre:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: recipientEmail || process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
+      replyTo: email,
+      subject: `Nuevo mensaje de contacto de ${name}`,
+      html: contactEmailBody,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Contact email sent successfully:", {
+      messageId: info.messageId,
+      response: info.response,
+      accepted: info.accepted,
+      rejected: info.rejected,
+    });
+    return { success: true, messageId: info.messageId };
+  } catch (error) {
+    console.error("Detailed error sending contact email:", {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+    });
+    throw new Error(`Failed to send contact email: ${error.message}`);
+  }
+}

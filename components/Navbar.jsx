@@ -2,12 +2,16 @@
 
 import { useState, useRef, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageDropdown from "./LanguageDropdown";
+import confetti from "canvas-confetti";
 
 const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
   const [showLinks, setShowLinks] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
+  const lastScrollYRef = useRef(0);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
   const { t } = useLanguage();
@@ -16,19 +20,67 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
   // Map link IDs to carousel indices: 2 -> 0, 3 -> 1, 4 -> 2
   const linkIdToIndex = { 2: 0, 3: 1, 4: 2 };
 
-  // Handle scroll effect
+  // Handle scroll effect and shake animation
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setScrolled(scrollTop > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          setScrolled(scrollTop > 20);
+
+          // Trigger shake animation when scrolling (only if position actually changed)
+          if (Math.abs(scrollTop - lastScrollYRef.current) > 1) {
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
+            lastScrollYRef.current = scrollTop;
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
+  };
+
+  // Handle logo click with confetti
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setActiveLinkId(0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setShowLinks(false);
+
+    // Confetti effect - all explosions at once
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // Trigger multiple confetti bursts simultaneously
+    const count = 5;
+    const particleCount = 50;
+
+    for (let i = 0; i < count; i++) {
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }
   };
 
   // Smooth scroll handler
@@ -74,8 +126,8 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-md shadow-lg"
-          : "bg-white/60 backdrop-blur-sm"
+          ? "bg-[#223f99]/95 backdrop-blur-md shadow-lg"
+          : "bg-[#223f99]/90 backdrop-blur-sm"
       }`}
     >
       <div className="w-full px-[5%] sm:px-[7%] md:px-[10%] lg:px-[12%]">
@@ -84,15 +136,18 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
           <div className="flex-shrink-0" style={{ paddingLeft: "80px" }}>
             <a
               href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveLinkId(0);
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setShowLinks(false);
-              }}
-              className="text-xl md:text-2xl font-bold text-[#223f99] hover:text-[#1a2f7a] transition-colors duration-200"
+              onClick={handleLogoClick}
+              className="logo-link flex items-center transition-all duration-200"
             >
-              AR
+              <Image
+                src="/retro.png"
+                alt="Alisson Rodrigues - Computer stickers created by Stickers - Flaticon (https://www.flaticon.com/free-stickers/computer)"
+                width={40}
+                height={40}
+                className={`logo-image rounded-lg shadow-xl transition-transform duration-200 ${
+                  isShaking ? "animate-shake" : ""
+                }`}
+              />
             </a>
           </div>
 
@@ -111,14 +166,9 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
                       onClick={(e) => handleLinkClick(e, link)}
                       className={`rounded-lg text-sm lg:text-base font-medium transition-all duration-200 ${
                         isActive
-                          ? "text-[#223f99] bg-[#223f99]/10 !px-8 !lg:px-10 !py-4 !lg:py-5"
-                          : "text-gray-700 hover:text-[#223f99] hover:bg-gray-100/50 !px-5 !lg:px-6 !py-2.5 !lg:py-3 hover:!px-8 hover:!lg:px-10 hover:!py-4 hover:!lg:py-5"
+                          ? "text-white bg-white/50 shadow-lg !px-8 !lg:px-10 !py-4 !lg:py-5"
+                          : "text-white hover:text-white hover:bg-white/10 !px-5 !lg:px-6 !py-2.5 !lg:py-3 hover:!px-8 hover:!lg:px-10 hover:!py-4 hover:!lg:py-5"
                       }`}
-                      style={{
-                        boxShadow: "none",
-                        borderBottom: "none",
-                        padding: isActive ? undefined : undefined,
-                      }}
                     >
                       {link.text}
                     </a>
@@ -139,7 +189,7 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleLinks}
-              className="md:hidden p-2 rounded-lg text-[#223f99] hover:bg-[#223f99]/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#223f99]/50"
+              className="md:hidden p-2 rounded-lg text-white hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
               aria-label="Toggle menu"
               aria-expanded={showLinks}
             >
@@ -167,13 +217,9 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
                     onClick={(e) => handleLinkClick(e, link)}
                     className={`block rounded-lg text-base font-medium transition-all duration-200 ${
                       isActive
-                        ? "text-[#223f99] bg-[#223f99]/10 !px-8 !py-5"
-                        : "text-gray-700 hover:text-[#223f99] hover:bg-gray-100/50 !px-6 !py-3.5 hover:!px-8 hover:!py-5"
+                        ? "text-white bg-white/50 shadow-lg !px-8 !py-5"
+                        : "text-white hover:text-white hover:bg-white/10 !px-6 !py-3.5 hover:!px-8 hover:!py-5"
                     }`}
-                    style={{
-                      boxShadow: "none",
-                      borderBottom: "none",
-                    }}
                   >
                     {link.text}
                   </a>

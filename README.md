@@ -1,151 +1,54 @@
-# Alisson Rodrigues CV
+# Alisson Rodrigues | Multidisciplinary Developer & Researcher
 
-**Interactive Curriculum Vitae** - This is the repository for Alisson Rodrigues' personal CV, developed as a modern web application with Next.js 15, Tailwind CSS 4, and Supabase authentication.
+> "In nature nothing is created and nothing is lost, everything is transformed." — Lavoisier
+
+Welcome to my professional corner on the web! This repository holds the code for my **Interactive Curriculum Vitae**, a space where I blend my background in Social Sciences with my passion for technology and innovation.
 
 **Read in other languages:** [Español](README.es.md) | [Português](README.pt.md)
 
-## 🌐 View Live CV
+## 🌐 Explore My Journey
 
-**👉 [View my CV online](https://alisson-rodrigues.netlify.app/)**
+**👉 [View my Interactive CV Live](https://alisson-rodrigues.netlify.app/)**
 
-This project represents my professional curriculum vitae in an interactive web format, where you can explore my experience, skills, education, and project portfolio.
+I invite you to visit the live version to explore my experiences, skills, and the projects I've built. It's designed to be more than just a list of jobs—it's a reflection of my multidisciplinary path.
 
-## 📋 About this CV
+## 👋 About Me
 
-This is my professional curriculum vitae presented as a modern web application. It includes sections for:
+I am a lifelong learner driven by the desire to evolve and explore limits. My journey is a mix of diverse fields:
 
-- **About Me** - Personal and professional information
-- **Experience** - Work history and featured projects
-- **Education & Courses** - Academic background and certifications
-- **Skills** - Technologies and technical competencies
-- **Portfolio** - Completed projects with links and demonstrations
-- **Contact** - Integrated contact form
+- **Innovation & Research:** Assisting in industry and agribusiness innovation projects at NITEC-UFRGS.
+- **Sociology:** Applying analytical thinking through my Social Sciences background at IFCH-UFRGS.
+- **Marketing & Strategy:** Experience in international marketing and PPC campaigns in Mexico.
+- **Software Development:** Building modern web applications using the JavaScript ecosystem.
 
-## 🚀 Technical Features
+I believe that true innovation happens at the intersection of these different fields.
 
-- **Next.js 15** - React framework with App Router
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **Authentication** - Login/logout system with Supabase
-- **Responsive Design** - Adaptive interface for all devices
-- **Multilingual** - Support for Spanish, English, and Portuguese
-- **Organized Structure** - Clean and well-structured code
-- **React Icons** - Modern and lightweight icon library
-- **Nodemailer** - Configured email sending system
+## 🛠️ Behind the Scenes
 
-## 🛠️ Technologies
+While this is a personal presentation, it's also a showcase of my technical skills as a developer. This CV was built using a modern stack to ensure performance, responsiveness, and a great user experience:
 
-- Next.js 15.4.6
-- React 19.1.0
-- Tailwind CSS 4.1.11
-- Supabase (authentication and database)
-- React Icons
-- Nodemailer (email sending)
-
-## 🚀 Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+- **Next.js 15 (App Router)** - For a fast, SEO-friendly React framework.
+- **Tailwind CSS 4** - For modern, utility-first styling.
+- **Supabase** - Powering authentication and backend services.
+- **React Icons** - For a clean and intuitive visual interface.
+- **Nodemailer** - For the integrated contact system.
+- **Multi-language Support** - Native support for Spanish, English, and Portuguese.
 
 ## 📁 Project Structure
 
-```
-app/
-├── (public)/          # Public routes
-│   ├── page.js        # Main page
-│   ├── login/         # Authentication system
-│   └── error/         # Error page
-├── (private)/         # Private routes
-│   └── private/       # Protected dashboard
-└── globals.css        # Global styles
+If you're interested in the code, here's how it's organized:
 
-components/             # Reusable components
-utils/                  # Utilities and configuration
-├── supabase/          # Supabase client and configuration
-└── mailer/            # Email sending system
-```
+- `app/`: Next.js 15 App Router structure with localized routes.
+- `components/`: Reusable React components for each section of the CV.
+- `utils/translations/`: The "brain" of the CV, where all my professional information is centralized with multi-language support (Spanish, English, Portuguese).
+- `utils/supabase/`: Authentication logic and database configuration.
 
-## 🔧 Configuration
+---
 
-1. Configure environment variables for Supabase
-2. Customize styles in `app/globals.css`
-3. Modify components according to your needs
-4. Add new features to the dashboard
+### 📧 Let's Connect!
 
-## 📧 Nodemailer
+I'm always open to discussing new ideas, projects, or opportunities. Feel free to reach out through the contact form on my website or connect with me on [LinkedIn](https://www.linkedin.com/in/alisson-rodrigues/).
 
-The project includes **Nodemailer** configured for sending emails. It's located in `utils/mailer/` and includes:
+---
 
-### Basic Configuration
-
-```javascript
-// utils/mailer/mailer.js
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransporter({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: true, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-```
-
-### Required Environment Variables
-
-```env
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=465
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-```
-
-### Basic Usage
-
-```javascript
-import { sendEmail } from "@/utils/mailer/mailer";
-
-// Send simple email
-await sendEmail({
-  to: "recipient@email.com",
-  subject: "Email subject",
-  html: "<h1>HTML content</h1>",
-});
-
-// Use predefined templates
-import { sendWelcomeEmail } from "@/utils/mailer/templates/welcomeEmail";
-await sendWelcomeEmail("user@email.com", "User Name");
-```
-
-### Available Templates
-
-- **welcomeEmail.js** - Welcome email for new users
-- Easy to customize and extend according to your needs
-
-## 📚 Learn More
-
-To learn more about Next.js, check out these resources:
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Next.js Tutorial](https://nextjs.org/learn)
-- [Next.js Repository](https://github.com/vercel/next.js)
-
-## 🚀 Deploy
-
-The easiest way to deploy your Next.js application is to use [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
-
-## 📝 License
-
-This project is under the MIT License.
+_Created with ❤️ by Alisson Rodrigues_

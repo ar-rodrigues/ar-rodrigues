@@ -18,6 +18,7 @@ export const PUBLIC_ROUTES = [
   "/help",
   "/faq",
   "/api/public",
+  "/api/contact",
 ];
 
 // Patrones de rutas públicas (regex)
@@ -220,13 +221,26 @@ export const APP_CONFIG = {
  * @returns {boolean} - True si la ruta es pública
  */
 export function isPublicRoute(pathname) {
+  // Limpiar el locale de la ruta para verificar contra PUBLIC_ROUTES
+  const supportedLocales = ["es", "en", "pt"];
+  const parts = pathname.split("/");
+  const pathWithoutLocale = supportedLocales.includes(parts[1])
+    ? "/" + parts.slice(2).join("/")
+    : pathname;
+
+  // Normalizar path (quitar slash final si no es solo /)
+  const normalizedPath =
+    pathWithoutLocale.length > 1 && pathWithoutLocale.endsWith("/")
+      ? pathWithoutLocale.slice(0, -1)
+      : pathWithoutLocale;
+
   // Verificar rutas exactas
-  if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
+  if (PUBLIC_ROUTES.includes(normalizedPath)) {
     return true;
   }
 
   // Verificar patrones regex
-  if (PUBLIC_PATTERNS.some((pattern) => pattern.test(pathname))) {
+  if (PUBLIC_PATTERNS.some((pattern) => pattern.test(normalizedPath))) {
     return true;
   }
 
@@ -239,7 +253,19 @@ export function isPublicRoute(pathname) {
  * @returns {boolean} - True si la ruta está protegida
  */
 export function isProtectedRoute(pathname) {
-  return PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
+  // Limpiar el locale de la ruta
+  const supportedLocales = ["es", "en", "pt"];
+  const parts = pathname.split("/");
+  const pathWithoutLocale = supportedLocales.includes(parts[1])
+    ? "/" + parts.slice(2).join("/")
+    : pathname;
+
+  const normalizedPath =
+    pathWithoutLocale.length > 1 && pathWithoutLocale.endsWith("/")
+      ? pathWithoutLocale.slice(0, -1)
+      : pathWithoutLocale;
+
+  return PROTECTED_ROUTES.some((route) => normalizedPath.startsWith(route));
 }
 
 /**

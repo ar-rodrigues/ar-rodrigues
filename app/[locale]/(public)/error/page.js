@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { RiHomeLine, RiLoginBoxLine } from "react-icons/ri";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ErrorPage() {
   const router = useRouter();
+  const { locale } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 flex items-center justify-center p-4">
@@ -24,14 +26,14 @@ export default function ErrorPage() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push(`/${locale}`)}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center justify-center space-x-2 transition-colors cursor-pointer"
           >
             <RiHomeLine />
             <span>Volver al Inicio</span>
           </button>
           <button
-            onClick={() => router.push("/login")}
+            onClick={() => router.push(`/${locale}/login`)}
             className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg flex items-center justify-center space-x-2 transition-colors cursor-pointer"
           >
             <RiLoginBoxLine />

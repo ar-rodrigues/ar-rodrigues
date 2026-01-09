@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 function Education() {
   const [value, setValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const { t } = useLanguage();
   const courses = t("courses");
+  const { ref, isVisible, isLeaving } = useScrollAnimation({ threshold: 0.1 });
 
   const { title, field, institution, dates, names, certified } = courses[value];
 
@@ -20,7 +22,10 @@ function Education() {
   }, [value]);
 
   return (
-    <section id="education" >
+    <section
+      ref={ref}
+      className={`scroll-fade-in ${isVisible ? "visible" : ""} ${isLeaving ? "leaving" : ""}`}
+    >
       <div className="title">
         <h2>{t("common.education.title")}</h2>
         <div className="underline"></div>

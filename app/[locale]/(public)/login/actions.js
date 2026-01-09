@@ -7,6 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 
 export async function login(formData) {
   const supabase = await createClient();
+  const locale = formData.get("locale") || "es";
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -27,11 +28,12 @@ export async function login(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/private");
+  redirect(`/${locale}/private`);
 }
 
 export async function signup(formData) {
   const supabase = await createClient();
+  const locale = formData.get("locale") || "es";
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -39,7 +41,7 @@ export async function signup(formData) {
     email: formData.get("email"),
     password: formData.get("password"),
     options: {
-      emailRedirectTo: `/auth/confirm?next=/private`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/${locale}/auth/confirm?next=/${locale}/private`,
     },
   };
 
@@ -59,5 +61,5 @@ export async function signup(formData) {
   revalidatePath("/", "layout");
 
   // Redirect to login with success message
-  redirect("/login?message=signup_success");
+  redirect(`/${locale}/login?message=signup_success`);
 }

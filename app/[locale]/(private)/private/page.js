@@ -8,12 +8,13 @@ import {
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 
-export default async function PrivatePage() {
+export default async function PrivatePage({ params }) {
+  const { locale } = await params;
   const supabase = await createClient();
 
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
-    redirect("/login");
+    redirect(`/${locale}/login`);
   }
 
   return (
@@ -32,7 +33,7 @@ export default async function PrivatePage() {
             </div>
             <span className="text-gray-700">{data.user.email}</span>
           </div>
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
               <RiArrowLeftLine />
               <span>Volver al Inicio</span>

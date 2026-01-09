@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 function Experiences() {
   const [value, setValue] = useState(0);
@@ -10,8 +11,12 @@ function Experiences() {
   const { t } = useLanguage();
   const experiences = t("experiences");
   const links = t("links");
+  const { ref, isVisible, isLeaving } = useScrollAnimation({ threshold: 0.1 });
 
-  const { company, dates, duties, title } = experiences[value];
+  // Sort experiences by order in descending order (highest order = most recent)
+  const sortedExperiences = [...experiences].sort((a, b) => b.order - a.order);
+
+  const { company, dates, duties, title } = sortedExperiences[value];
 
   // Trigger animation when value changes
   useEffect(() => {
@@ -21,7 +26,12 @@ function Experiences() {
   }, [value]);
 
   return (
-    <section id="experiences">
+    <section
+      ref={ref}
+      className={`scroll-fade-in ${isVisible ? "visible" : ""} ${
+        isLeaving ? "leaving" : ""
+      }`}
+    >
       <div className="title">
         <h2>{links[2].text}</h2>
         <div className="underline"></div>
@@ -29,7 +39,7 @@ function Experiences() {
       <div className="jobs-center">
         {/* btn container */}
         <div className="btn-container">
-          {experiences.map((item, index) => {
+          {sortedExperiences.map((item, index) => {
             return (
               <button
                 key={item.id}

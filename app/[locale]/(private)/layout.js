@@ -10,14 +10,19 @@ import {
 } from "react-icons/ri";
 import { useRouter, usePathname } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useState } from "react";
 
 export default function PrivateLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
+  const { locale } = useLanguage();
   const [user, setUser] = useState(null);
   const [collapsed, setCollapsed] = useState(false);
   const supabase = createClient();
+
+  // Extract path without locale for comparison with menu keys
+  const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, "/");
 
   useEffect(() => {
     const getUser = async () => {
@@ -25,17 +30,17 @@ export default function PrivateLayout({ children }) {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        router.push("/login");
+        router.push(`/${locale}/login`);
         return;
       }
       setUser(user);
     };
     getUser();
-  }, [supabase.auth, router]);
+  }, [supabase.auth, router, locale]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/");
+    router.push(`/${locale}`);
   };
 
   const menuItems = [
@@ -94,7 +99,7 @@ export default function PrivateLayout({ children }) {
               key={item.key}
               onClick={() => handleMenuClick(item.key)}
               className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors cursor-pointer ${
-                pathname === item.key
+                pathWithoutLocale === item.key
                   ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600"
                   : "text-gray-700"
               }`}

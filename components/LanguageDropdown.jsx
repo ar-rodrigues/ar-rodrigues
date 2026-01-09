@@ -50,11 +50,7 @@ export default function LanguageDropdown() {
   });
 
   return (
-    <Dropdown
-      menu={{ items }}
-      trigger={["hover", "click"]}
-      placement="bottomRight"
-    >
+    <Dropdown menu={{ items }} trigger={["click"]} placement="bottomRight">
       <button
         className="flex items-center justify-center gap-3 px-5 "
         aria-label="Seleccionar idioma"
@@ -66,7 +62,7 @@ export default function LanguageDropdown() {
           alt={currentFlag.alt}
           className="rounded object-cover flex-shrink-0"
         />
-        <HiChevronDown className="text-gray-500 text-xs" />
+        <HiChevronDown className="text-white/90 text-xs" />
       </button>
     </Dropdown>
   );

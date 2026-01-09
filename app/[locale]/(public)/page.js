@@ -20,14 +20,28 @@ const indexToLinkId = [2, 3, 4];
 
 export default function HomePage() {
   const [index, setIndex] = useState(1);
+  const indexRef = useRef(1); // Keep a ref to read the current index in the intersection observer
   const [activeLinkId, setActiveLinkId] = useState(0); // Start with Home (id: 0)
   const [direction, setDirection] = useState(null); // Track navigation direction: 'left' or 'right'
-  const [isAnimating, setIsAnimating] = useState(false); // Prevent rapid clicks during animation
+  const isAnimating = useState(false)[0]; // Keep existing state for animation tracking
+  const setIsAnimating = useState(false)[1];
+  const isManualScrolling = useRef(false);
   const isInitialized = useRef(false);
   const hasScrolledToHash = useRef(false);
   const scrollRetryCount = useRef(0);
   const initialHashRef = useRef(null);
   const { t, isLoading } = useLanguage();
+
+  useEffect(() => {
+    const startHandler = () => { isManualScrolling.current = true; };
+    const endHandler = () => { isManualScrolling.current = false; };
+    document.addEventListener('manualScrollStart', startHandler);
+    document.addEventListener('manualScrollEnd', endHandler);
+    return () => {
+      document.removeEventListener('manualScrollStart', startHandler);
+      document.removeEventListener('manualScrollEnd', endHandler);
+    };
+  }, []);
 
   const activeSection = [
     <Experiences key="experiences" />,
@@ -44,6 +58,21 @@ export default function HomePage() {
       setIndex(linkIdIndex);
     }
   }, [activeLinkId, index]);
+
+  // Sync indexRef with index
+  useEffect(() => {
+    indexRef.current = index;
+    window.updateIndexRef = (val) => { indexRef.current = val; };
+  }, [index]);
+
+  // Sync activeLinkId with index when index changes (for carousel sections)
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    const newActiveLinkId = indexToLinkId[index];
+    if (activeLinkId !== newActiveLinkId && [2, 3, 4].includes(activeLinkId)) {
+      setActiveLinkId(newActiveLinkId);
+    }
+  }, [index, activeLinkId]);
 
   // Initialize from URL hash on mount (only once)
   useEffect(() => {
@@ -90,9 +119,12 @@ export default function HomePage() {
 
     // Wait for DOM to be ready
     const performScroll = () => {
-      const targetElement = document.getElementById(hash);
+      // Map sub-section hashes to the parent container ID
+      const scrollHash = ["courses", "skills"].includes(hash) ? "experiences" : hash;
+      const targetElement = document.getElementById(scrollHash);
 
       if (targetElement) {
+        isManualScrolling.current = true;
         const rect = targetElement.getBoundingClientRect();
         const offsetTop = window.pageYOffset + rect.top - 80;
         const scrollDiff = Math.abs(window.pageYOffset - offsetTop);
@@ -103,6 +135,13 @@ export default function HomePage() {
             top: offsetTop,
             behavior: "smooth",
           });
+          
+          // Reset manual scroll flag after animation
+          setTimeout(() => {
+            isManualScrolling.current = false;
+          }, 1000);
+        } else {
+          isManualScrolling.current = false;
         }
         hasScrolledToHash.current = true;
       } else {
@@ -118,6 +157,61 @@ export default function HomePage() {
     const timeoutId = setTimeout(performScroll, 500);
     return () => clearTimeout(timeoutId);
   }, [isLoading]); // Removed 'index' from dependencies - we only want to scroll once on initial load
+
+  // Handle scroll tracking to update activeLinkId automatically
+  useEffect(() => {
+    if (isLoading || !isInitialized.current) return;
+
+    const sections = [
+      { id: 0, selector: "home" },
+      { id: 1, selector: "about" },
+      { id: 2, selector: "experiences" }, // Maps to Experiencia, Cursos, Habilidades
+      { id: 5, selector: "portfolio" },
+      { id: 6, selector: "contact-box" },
+    ];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -20% 0px", // Trigger when section occupies a good portion of the viewport
+      threshold: 0,
+    };
+
+    const handleIntersection = (entries) => {
+      if (isManualScrolling.current) return;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const section = sections.find((s) => s.selector === entry.target.id);
+          if (section) {
+            let newId = section.id;
+            if (section.id === 2) {
+              // Sync with current carousel index when entering the experiences section
+              newId = indexToLinkId[indexRef.current];
+            }
+            
+            // Only update if it's actually different to avoid unnecessary hash replacements
+            setActiveLinkId((prev) => {
+              if (prev === newId) return prev;
+              
+              // If we are currently manual scrolling, ignore the observer
+              if (isManualScrolling.current) return prev;
+              
+              return newId;
+            });
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section.selector);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [isLoading]); // Removed index from dependencies - now using indexRef
 
   // Update URL hash when activeLinkId changes (only after initialization)
   useEffect(() => {
@@ -144,22 +238,16 @@ export default function HomePage() {
 
     if (clickDirection === "prev") {
       const newIndex = index - 1;
-      if (newIndex < 0) {
-        setIndex(lastIndex);
-        setActiveLinkId(indexToLinkId[lastIndex]);
-      } else {
-        setIndex(newIndex);
-        setActiveLinkId(indexToLinkId[newIndex]);
-      }
+      const finalIndex = newIndex < 0 ? lastIndex : newIndex;
+      indexRef.current = finalIndex; // Update ref immediately
+      setIndex(finalIndex);
+      setActiveLinkId(indexToLinkId[finalIndex]);
     } else {
       const newIndex = index + 1;
-      if (newIndex > lastIndex) {
-        setIndex(0);
-        setActiveLinkId(indexToLinkId[0]);
-      } else {
-        setIndex(newIndex);
-        setActiveLinkId(indexToLinkId[newIndex]);
-      }
+      const finalIndex = newIndex > lastIndex ? 0 : newIndex;
+      indexRef.current = finalIndex; // Update ref immediately
+      setIndex(finalIndex);
+      setActiveLinkId(indexToLinkId[finalIndex]);
     }
 
     // Reset animation state after animation completes
@@ -183,10 +271,7 @@ export default function HomePage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#223f99] mx-auto"></div>
-          <p className="mt-4 text-gray-600">{t("common.loading")}</p>
-        </div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#223f99]"></div>
       </div>
     );
   }

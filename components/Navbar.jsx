@@ -48,7 +48,16 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
   const handleLogoClick = (e) => {
     e.preventDefault();
     setActiveLinkId(0);
+    
+    // Logic to prevent intersection observer from triggering during manual scroll
+    if (window.isManualScrollingTimeout) clearTimeout(window.isManualScrollingTimeout);
+    document.dispatchEvent(new CustomEvent('manualScrollStart'));
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.isManualScrollingTimeout = setTimeout(() => {
+      document.dispatchEvent(new CustomEvent('manualScrollEnd'));
+    }, 1000);
 
     // Confetti effect - all explosions at once
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -82,20 +91,31 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
     // Update global active link state
     setActiveLinkId(link.id);
 
-    const targetId = link.url.replace("#", "");
+    const rawId = link.url.replace("#", "");
+    // Map sub-section hashes to the parent container ID for scrolling
+    const targetId = ["courses", "skills"].includes(rawId) ? "experiences" : rawId;
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
+      // Logic to prevent intersection observer from triggering during manual scroll
+      if (window.isManualScrollingTimeout) clearTimeout(window.isManualScrollingTimeout);
+      document.dispatchEvent(new CustomEvent('manualScrollStart'));
+      
       const offsetTop = targetElement.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
       });
+
+      window.isManualScrollingTimeout = setTimeout(() => {
+        document.dispatchEvent(new CustomEvent('manualScrollEnd'));
+      }, 1000);
     }
 
     // Handle setIndex if it's a carousel section (Experiencia, Cursos, Habilidades)
     if (setIndex && link.id >= 2 && link.id <= 4) {
       const carouselIndex = linkIdToIndex[link.id];
+      if (window.updateIndexRef) window.updateIndexRef(carouselIndex);
       setIndex(carouselIndex);
     }
   };
@@ -137,15 +157,16 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
             >
               {links.map((link) => {
                 const isActive = activeLinkId === link.id;
+                
                 return (
                   <li key={link.id}>
                     <a
                       href={link.url}
                       onClick={(e) => handleLinkClick(e, link)}
-                      className={`rounded-lg text-sm lg:text-base font-medium transition-all duration-200 ${
+                      className={`rounded-lg text-xs lg:text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                         isActive
-                          ? "text-white bg-white/50 shadow-lg !px-8 !lg:px-10 !py-4 !lg:py-5"
-                          : "text-white hover:text-white hover:bg-white/10 !px-5 !lg:px-6 !py-2.5 !lg:py-3 hover:!px-8 hover:!lg:px-10 hover:!py-4 hover:!lg:py-5"
+                          ? "!text-[#223f99] !bg-white shadow-lg !px-4 !lg:px-5 !py-2 !lg:py-2.5"
+                          : "!text-white hover:!text-white hover:bg-white/10 !px-3 !lg:px-4 !py-1.5 !lg:py-2 hover:!px-4 hover:!lg:px-5 hover:!py-2 hover:!lg:py-2.5"
                       }`}
                     >
                       {link.text}

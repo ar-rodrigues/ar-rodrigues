@@ -17,12 +17,12 @@ export const translations = {
     },
     {
       id: 3,
-      url: "#experiences",
+      url: "#courses",
       text: "Cursos",
     },
     {
       id: 4,
-      url: "#experiences",
+      url: "#skills",
       text: "Habilidades",
     },
     {

@@ -18,31 +18,12 @@ function Skills() {
 
   // Transform data for nivo format
   // Nivo expects an array where each object has the metric as a property
-  const radarData =
-    skills?.map((skill) => ({
-      skill: skill.subject,
-      level: skill.nivel,
-    })) || [];
-
-  if (!mounted || !skills || skills.length === 0) {
-    return (
-      <section style={{ width: "100%", display: "block" }}>
-        <div className="title">
-          <h2>{skillsTitle}</h2>
-        </div>
-        <div style={{ width: "100%", display: "block" }}>
-          <article
-            className="skill-center"
-            style={{ width: "100%", display: "block" }}
-          >
-            <div className="radar-chart-wrapper" style={{ width: "100%" }}>
-              <div>Cargando...</div>
-            </div>
-          </article>
-        </div>
-      </section>
-    );
-  }
+  const radarData = Array.isArray(skills)
+    ? skills.map((skill) => ({
+        skill: skill.subject || "",
+        level: skill.nivel || 0,
+      }))
+    : [];
 
   return (
     <section
@@ -57,41 +38,45 @@ function Skills() {
       </div>
       <div style={{ width: "100%", display: "block" }}>
         <article
-          className="skill-center"
+          className={`skill-center ${isVisible ? "fade-in-scale" : ""}`}
           style={{ width: "100%", display: "block" }}
         >
           <div className="radar-chart-wrapper" style={{ width: "100%" }}>
-            <ResponsiveRadar
-              data={radarData}
-              keys={["level"]}
-              indexBy="skill"
-              valueFormat=" >-.0f"
-              margin={{ top: 30, right: 50, bottom: 30, left: 50 }}
-              borderColor={{ from: "color" }}
-              gridLabelOffset={24}
-              dotSize={7}
-              dotColor={{ theme: "background" }}
-              dotBorderWidth={2}
-              colors={["#223f99"]}
-              fillOpacity={0.6}
-              blendMode="normal"
-              motionConfig="wobbly"
-              maxValue={7}
-              theme={{
-                text: {
-                  fill: "#223f99",
-                  fontSize: 10,
-                  fontWeight: 600,
-                },
-                grid: {
-                  line: {
-                    stroke: "#223f99",
-                    strokeWidth: 1,
-                    strokeOpacity: 0.3,
+            {!mounted || !skills || skills.length === 0 ? (
+              <div>Cargando...</div>
+            ) : (
+              <ResponsiveRadar
+                data={radarData}
+                keys={["level"]}
+                indexBy="skill"
+                maxValue={7}
+                margin={{ top: 30, right: 50, bottom: 30, left: 50 }}
+                borderColor={{ from: "color" }}
+                gridLabelOffset={24}
+                dotSize={7}
+                dotColor="#223f99"
+                dotBorderWidth={2}
+                colors={["#223f99"]}
+                fillOpacity={0.6}
+                blendMode="normal"
+                motionConfig="wobbly"
+                theme={{
+                  background: "transparent",
+                  text: {
+                    fill: "#223f99",
+                    fontSize: 10,
+                    fontWeight: 600,
                   },
-                },
-              }}
-            />
+                  grid: {
+                    line: {
+                      stroke: "#223f99",
+                      strokeWidth: 1,
+                      strokeOpacity: 0.3,
+                    },
+                  },
+                }}
+              />
+            )}
           </div>
         </article>
       </div>

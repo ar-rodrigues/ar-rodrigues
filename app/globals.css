@@ -52,6 +52,7 @@ a {
   box-shadow: 0px 1px 0px white;
   text-decoration: none;
   border-bottom: 2px solid white;
+  color: #1677ff; /* Standard blue link color */
 }
 
 a:hover {
@@ -69,6 +70,7 @@ nav a {
   padding: 0 !important;
   box-shadow: none !important;
   border-bottom: none !important;
+  text-decoration: none !important;
   color: white !important;
 }
 
@@ -80,6 +82,7 @@ nav a:hover {
   padding: 0 !important;
   border-bottom: none !important;
   box-shadow: none !important;
+  color: white !important;
 }
 
 ul {
@@ -353,13 +356,19 @@ html {
   width: 100vw;
   height: 50vw;
   display: grid;
-  position: block;
+  position: relative;
   font-size: auto;
   place-items: center;
   text-align: center;
-  background-size: 100vw;
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-blend-mode: multiply;
+  overflow: visible;
+  z-index: 2;
+  margin-bottom: 2rem;
+  /* Shadow for depth */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .header-box {
@@ -373,6 +382,25 @@ html {
   font-size: 2vw;
   color: #223f99;
   border-radius: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 70vh;
+    min-height: 500px;
+    margin-bottom: 2.5rem;
+    /* Shadow for depth - mobile */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-box {
+    height: auto;
+    min-height: 200px;
+    padding: 4vw;
+    font-size: 1.2rem;
+  }
 }
 
 /* About */
@@ -545,6 +573,20 @@ html {
   right: 0.75rem;
 }
 
+@media screen and (max-width: 768px) {
+  .prev {
+    left: 0.25rem;
+  }
+  
+  .next {
+    right: 0.25rem;
+  }
+  
+  .jobs-center {
+    padding: 0 3rem;
+  }
+}
+
 @media (min-width: 800px) {
   .prev,
   .next {
@@ -621,11 +663,6 @@ html {
   padding: 0 2rem;
 }
 
-@media screen and (max-width: 768px) {
-  .jobs-center {
-    padding: 0 1.5rem;
-  }
-}
 
 .btn-container {
   display: flex;
@@ -671,8 +708,6 @@ html {
 .job-info {
   position: relative;
   min-height: 280px;
-  max-height: 280px;
-  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -804,7 +839,6 @@ html {
 /* Skills */
 .skill-center {
   display: block !important;
-  opacity: 0;
   width: 100% !important;
   max-width: 100% !important;
   min-width: 100% !important;
@@ -855,7 +889,6 @@ html {
   }
   .job-info {
     min-height: 250px;
-    max-height: 250px;
   }
 }
 
@@ -1394,9 +1427,77 @@ html {
   }
 }
 
+/* Section Divider Opacity Variants */
+.section-divider.high-opacity .section-divider-svg {
+  opacity: 1;
+  filter: blur(0.5px);
+}
+
+.section-divider.medium-opacity .section-divider-svg {
+  opacity: 0.85;
+}
+
+.section-divider.high-opacity {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.section-divider.high-opacity .section-divider-wave {
+  animation: waveFloatEnhanced 6s ease-in-out infinite;
+}
+
+@keyframes waveFloatEnhanced {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-10px) translateX(4px) scale(1.01);
+    opacity: 0.98;
+  }
+  40% {
+    transform: translateY(-15px) translateX(0px) scale(1.02);
+    opacity: 0.95;
+  }
+  60% {
+    transform: translateY(-10px) translateX(-4px) scale(1.01);
+    opacity: 0.98;
+  }
+  80% {
+    transform: translateY(-5px) translateX(2px) scale(1);
+    opacity: 0.99;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-divider-wave {
     animation: none;
+  }
+  
+  .section-divider.high-opacity .section-divider-wave {
+    animation: none;
+  }
+}
+
+/* Mobile adjustments for section divider */
+@media screen and (max-width: 768px) {
+  .section-divider-wave-container {
+    height: 300px;
+  }
+  
+  .section-divider-wave-container.overlap-balanced {
+    margin-top: -150px;
+    margin-bottom: -150px;
+  }
+  
+  .section-divider-curve-container {
+    height: 150px;
+  }
+  
+  .section-divider-curve-container.overlap-balanced {
+    margin-top: -75px;
+    margin-bottom: -75px;
   }
 }
 

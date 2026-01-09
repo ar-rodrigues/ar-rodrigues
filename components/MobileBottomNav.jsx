@@ -55,20 +55,31 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
     // Update global active link state
     setActiveLinkId(link.id);
 
-    const targetId = link.url.replace("#", "");
+    const rawId = link.url.replace("#", "");
+    // Map sub-section hashes to the parent container ID for scrolling
+    const targetId = ["courses", "skills"].includes(rawId) ? "experiences" : rawId;
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
+      // Logic to prevent intersection observer from triggering during manual scroll
+      if (window.isManualScrollingTimeout) clearTimeout(window.isManualScrollingTimeout);
+      document.dispatchEvent(new CustomEvent('manualScrollStart'));
+
       const offsetTop = targetElement.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
       });
+
+      window.isManualScrollingTimeout = setTimeout(() => {
+        document.dispatchEvent(new CustomEvent('manualScrollEnd'));
+      }, 1000);
     }
 
     // Handle setIndex if it's a carousel section (Experiencia, Cursos, Habilidades)
     if (setIndex && link.id >= 2 && link.id <= 4) {
       const carouselIndex = linkIdToIndex[link.id];
+      if (window.updateIndexRef) window.updateIndexRef(carouselIndex);
       setIndex(carouselIndex);
     }
 
@@ -85,7 +96,7 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
       key: link.id.toString(),
       icon: <IconComponent className="text-xl" />,
       label: (
-        <span className={isActive ? "font-semibold" : "font-medium"}>
+        <span className={isActive ? "text-white font-semibold" : "font-medium"}>
           {link.text}
         </span>
       ),
@@ -157,7 +168,7 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         classNames={{ root: "mobile-nav-dropdown-overlay" }}
       >
         <button
-          className="w-14 h-14 bg-[#223f99] text-white flex items-center justify-center rounded-full shadow-lg hover:bg-[#1a3180] active:scale-95 transition-all duration-200 relative"
+          className="w-14 h-14 bg-white text-[#223f99] flex items-center justify-center rounded-full shadow-lg hover:bg-gray-50 active:scale-95 transition-all duration-200 relative"
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isOpen}
         >
@@ -213,6 +224,7 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         .mobile-nav-dropdown-overlay .ant-dropdown-menu {
           padding: 12px 0;
           border-radius: 16px;
+          background-color: white;
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
           min-width: 240px;
           animation: slideUpFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -239,7 +251,7 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         }
 
         .mobile-nav-dropdown-overlay .ant-dropdown-menu-item:hover {
-          background-color: rgba(34, 63, 153, 0.08);
+          background-color: rgba(34, 63, 153, 0.05);
         }
 
         /* Icon styling - Larger icons for better visibility */
@@ -253,8 +265,8 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         .mobile-nav-dropdown-overlay .ant-dropdown-menu-item-selected,
         .mobile-nav-dropdown-overlay
           .ant-dropdown-menu-item.mobile-nav-item-active {
-          background-color: rgba(34, 63, 153, 0.12);
-          color: #223f99;
+          background-color: #223f99 !important;
+          color: white !important;
         }
 
         .mobile-nav-dropdown-overlay
@@ -263,12 +275,12 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         .mobile-nav-dropdown-overlay
           .ant-dropdown-menu-item.mobile-nav-item-active
           .ant-dropdown-menu-item-icon {
-          color: #223f99;
+          color: white !important;
         }
 
         /* Text styling - Larger text for better readability */
         .mobile-nav-dropdown-overlay .ant-dropdown-menu-title-content {
-          color: #374151;
+          color: #223f99;
           font-size: 16px;
           line-height: 1.5;
         }
@@ -276,7 +288,8 @@ const MobileBottomNav = ({ setIndex, activeLinkId, setActiveLinkId }) => {
         .mobile-nav-dropdown-overlay
           .ant-dropdown-menu-item-selected
           .ant-dropdown-menu-title-content {
-          color: #223f99;
+          color: white !important;
+          font-weight: 600;
         }
 
         /* Language flags styling */

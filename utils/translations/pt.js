@@ -144,12 +144,12 @@ export const translations = {
   courses: [
     {
       id: "universidade",
-      title: "Licenciatura em Ciências Sociais - IFCH",
+      title: "Licenciatura em Ciências Sociais Incompleta - IFCH",
       field: "Formação",
       institution: "Universidade Federal do Rio Grande do Sul",
       dates: "2018 - 2023",
       names: [
-        "Licenciatura em Ciências Sociais no Instituto de Filosofia e Ciências Sociais da Universidade Federal do Rio Grande do Sul",
+        "Licenciatura incompleta em Ciências Sociais no Instituto de Filosofia e Ciências Sociais da Universidade Federal do Rio Grande do Sul",
       ],
       certified: [],
     },

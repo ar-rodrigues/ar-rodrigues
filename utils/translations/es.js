@@ -145,12 +145,12 @@ export const translations = {
   courses: [
     {
       id: "universidade",
-      title: "Licenciatura en Ciencias Sociales - IFCH",
+      title: "Licenciatura en Ciencias Sociales Truncada - IFCH",
       field: "Formación",
       institution: "Universidade Federal do Rio Grande do Sul",
       dates: "2018 - 2023",
       names: [
-        "Licenciatura en Ciencias Sociales en el Instituto de Filosofía y Ciencias Sociales de la Universidad Federal de Rio Grande do Sul",
+        "Licenciatura truncada en Ciencias Sociales en el Instituto de Filosofía y Ciencias Sociales de la Universidad Federal de Rio Grande do Sul",
       ],
       certified: [],
     },

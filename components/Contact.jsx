@@ -14,6 +14,7 @@ function Contact() {
   const [form] = Form.useForm();
   const { message } = App.useApp();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const formStartTimeRef = useRef(Date.now());
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function Contact() {
   }, []);
 
   const handleSubmit = async (values) => {
+    setIsLoading(true);
     try {
       const formStartTime = formStartTimeRef.current;
       const submissionTime = Date.now();
@@ -59,6 +61,8 @@ function Contact() {
     } catch (error) {
       console.error("Contact form error:", error);
       message.error(error.message || "Error al enviar el mensaje");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -195,6 +199,8 @@ function Contact() {
               block
               className="contact-button-primary"
               size="large"
+              loading={isLoading}
+              disabled={isLoading}
             >
               {t("common.contact.submit")}
             </Button>

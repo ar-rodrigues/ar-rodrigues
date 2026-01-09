@@ -6,7 +6,7 @@ import { AntdProvider } from "./AntdProvider";
 export const metadata = {
   title: "Alisson Rodrigues CV",
   description:
-    "Un proyecto base completo y listo para usar con Next.js 15, Tailwind CSS 4 y autenticación",
+    "Hello! I'm Alisson Rodrigues and this is my website. Check it out!",
   robots: {
     index: false,
     follow: false,

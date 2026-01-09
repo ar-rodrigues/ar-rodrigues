@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import Navbar from "@/components/Navbar";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import Home from "@/components/Home";
 import About from "@/components/About";
 import Experiences from "@/components/Experiences";
@@ -196,6 +197,11 @@ export default function HomePage() {
       <Navbar
         setIndex={setIndex}
         currentIndex={index}
+        activeLinkId={activeLinkId}
+        setActiveLinkId={setActiveLinkId}
+      />
+      <MobileBottomNav
+        setIndex={setIndex}
         activeLinkId={activeLinkId}
         setActiveLinkId={setActiveLinkId}
       />

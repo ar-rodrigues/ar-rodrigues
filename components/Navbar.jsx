@@ -1,18 +1,15 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageDropdown from "./LanguageDropdown";
 import confetti from "canvas-confetti";
 
 const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
-  const [showLinks, setShowLinks] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
   const lastScrollYRef = useRef(0);
-  const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
   const { t } = useLanguage();
   const links = t("links");
@@ -47,16 +44,11 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleLinks = () => {
-    setShowLinks(!showLinks);
-  };
-
   // Handle logo click with confetti
   const handleLogoClick = (e) => {
     e.preventDefault();
     setActiveLinkId(0);
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setShowLinks(false);
 
     // Confetti effect - all explosions at once
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -101,9 +93,6 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
       });
     }
 
-    // Close mobile menu
-    setShowLinks(false);
-
     // Handle setIndex if it's a carousel section (Experiencia, Cursos, Habilidades)
     if (setIndex && link.id >= 2 && link.id <= 4) {
       const carouselIndex = linkIdToIndex[link.id];
@@ -111,20 +100,9 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
     }
   };
 
-  useEffect(() => {
-    if (linksRef.current && linksContainerRef.current) {
-      const linksHeight = linksRef.current.getBoundingClientRect().height;
-      if (showLinks) {
-        linksContainerRef.current.style.height = `${linksHeight}px`;
-      } else {
-        linksContainerRef.current.style.height = "0px";
-      }
-    }
-  }, [showLinks, links]);
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#223f99]/95 backdrop-blur-md shadow-lg"
           : "bg-[#223f99]/90 backdrop-blur-sm"
@@ -178,55 +156,14 @@ const Navbar = ({ setIndex, activeLinkId, setActiveLinkId }) => {
             </ul>
           </div>
 
-          {/* Right side - Language Dropdown and Mobile Menu Button */}
+          {/* Right side - Language Dropdown */}
           <div
             className="flex items-center gap-3 flex-shrink-0"
             style={{ paddingRight: "80px" }}
           >
             {/* Language Dropdown - Always visible */}
             <LanguageDropdown />
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleLinks}
-              className="md:hidden p-2 rounded-lg text-white hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-              aria-label="Toggle menu"
-              aria-expanded={showLinks}
-            >
-              {showLinks ? (
-                <HiX className="w-6 h-6" />
-              ) : (
-                <HiMenu className="w-6 h-6" />
-              )}
-            </button>
           </div>
-        </div>
-
-        {/* Mobile Navigation Links */}
-        <div
-          ref={linksContainerRef}
-          className="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
-        >
-          <ul className="py-2 space-y-2" ref={linksRef}>
-            {links.map((link) => {
-              const isActive = activeLinkId === link.id;
-              return (
-                <li key={link.id}>
-                  <a
-                    href={link.url}
-                    onClick={(e) => handleLinkClick(e, link)}
-                    className={`block rounded-lg text-base font-medium transition-all duration-200 ${
-                      isActive
-                        ? "text-white bg-white/50 shadow-lg !px-8 !py-5"
-                        : "text-white hover:text-white hover:bg-white/10 !px-6 !py-3.5 hover:!px-8 hover:!py-5"
-                    }`}
-                  >
-                    {link.text}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </div>
     </nav>

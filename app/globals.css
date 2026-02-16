@@ -916,18 +916,17 @@ html {
 .portf-list {
   padding: 5vw 0 0vw 0;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   gap: 3rem;
-  align-items: start;
-  justify-items: center;
   padding-left: 4rem;
   padding-right: 4rem;
 }
 
 @media screen and (min-width: 768px) {
   .portf-list {
-    grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
     padding-left: 5rem;
     padding-right: 5rem;
@@ -936,7 +935,6 @@ html {
 
 @media screen and (min-width: 1024px) {
   .portf-list {
-    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
     padding-left: 4rem;
     padding-right: 4rem;
@@ -949,6 +947,7 @@ html {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  flex: 0 0 auto;
   width: 100%;
   max-width: 250px;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -969,7 +968,8 @@ html {
 }
 
 .portf-item a {
-  display: block;
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 0;
   border-bottom: none;
@@ -1001,9 +1001,14 @@ html {
 }
 
 @media screen and (max-width: 767px) {
+  .portf-item {
+    max-width: 100%;
+  }
+
   .portf-item img {
     max-width: 180px;
     height: 180px;
+    margin-inline: auto;
   }
 
   .portf-list {

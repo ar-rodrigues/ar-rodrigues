@@ -231,6 +231,13 @@ export const translations = {
       image: "/residentify.png",
       alt: "Residentify website",
     },
+    {
+      id: "rancic-armatura",
+      title: "Site corporativo - Armatura",
+      url: "https://rancic-site.vercel.app/en",
+      image: "/rancic.png",
+      alt: "Rancic Software - Site Armatura, controle de processamento e produção de aço",
+    },
   ],
   skills: [
     {

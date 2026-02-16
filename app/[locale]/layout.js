@@ -1,5 +1,6 @@
 export async function generateMetadata({ params }) {
-  const locale = params?.locale || 'en';
+  const { locale } = await params;
+  const resolvedLocale = locale || 'en';
   
   const descriptions = {
     en: "Hello! I'm Alisson Rodrigues and this is my website. Check it out!",
@@ -9,7 +10,7 @@ export async function generateMetadata({ params }) {
   
   return {
     title: "Alisson Rodrigues CV",
-    description: descriptions[locale] || descriptions.en,
+    description: descriptions[resolvedLocale] || descriptions.en,
     robots: {
       index: false,
       follow: false,

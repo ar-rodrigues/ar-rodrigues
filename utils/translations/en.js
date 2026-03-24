@@ -144,12 +144,12 @@ export const translations = {
   courses: [
     {
       id: "universidade",
-      title: "Incomplete Bachelor's Degree in Social Sciences - IFCH",
+      title: "Bachelor's Degree in Social Sciences (incomplete) - IFCH",
       field: "Education",
-      institution: "Federal University of Rio Grande do Sul",
+      institution: "Universidade Federal do Rio Grande do Sul",
       dates: "2018 - 2023",
       names: [
-        "Incomplete Bachelor's Degree in Social Sciences at the Institute of Philosophy and Social Sciences of the Federal University of Rio Grande do Sul",
+        "Pursued a Bachelor's Degree in Social Sciences at the Institute of Philosophy and Social Sciences, Universidade Federal do Rio Grande do Sul (not completed).",
       ],
       certified: [],
     },

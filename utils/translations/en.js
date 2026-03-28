@@ -225,13 +225,6 @@ export const translations = {
       alt: "Dica México mobile app",
     },
     {
-      id: "residentify",
-      title: "Access Control System - Under Construction",
-      url: "https://residentify.vercel.app/",
-      image: "/residentify.png",
-      alt: "Residentify website",
-    },
-    {
       id: "rancic-armatura",
       title: "Corporate Website - Armatura",
       url: "https://rancic-site.vercel.app/en",

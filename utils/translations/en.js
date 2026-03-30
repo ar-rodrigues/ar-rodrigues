@@ -58,10 +58,21 @@ export const translations = {
   ],
   experiences: [
     {
+      id: "agil2026",
+      order: 13,
+      title: "Partner and Director of Technology",
+      dates: "March 2026 - Present",
+      duties: [
+        "Defining the firm's technology strategy and digital portfolio.",
+        "Leading automation initiatives and tools that support audits and comprehensive guidelines management.",
+      ],
+      company: "AGIL",
+    },
+    {
       id: "tksmx2024",
       order: 11,
-      title: "TKS México - Audits",
-      dates: "April 2024 - Present",
+      title: "Solutions Architect",
+      dates: "April 2024 - March 2026 · 2 years",
       duties: [
         "Development of tools to increase productivity and efficiency of audit processes.",
         "Development of digital tools for company process automation.",
@@ -70,22 +81,19 @@ export const translations = {
       company: "TKS México",
     },
     {
-      id: "freelancer2021",
-      order: 10,
-      title: "Freelancer",
+      id: "consultant2021",
+      order: 12,
+      title: "Consultant",
       dates: "October 2021 - Present",
       duties: [
-        "Created and developed responsive and user-friendly websites, tailored to clients' objectives and brand identity.",
-
-        "Collaboration with clients and teams to create visually appealing and functional digital experiences.",
-        "Ensured high performance, mobile responsiveness, and cross-browser compatibility in all projects.",
+        "I help organizations map processes, identify automation and growth opportunities, and build tailored web and mobile platforms aligned with their strategic needs to drive business scalability.",
       ],
-      company: "Freelancer",
+      company: "Consultant",
     },
     {
       id: "gpset2019",
       order: 9,
-      title: "Research Group Society, Economy and Work (GPSET - UFRGS)",
+      title: "Research Group Society, Economy and Work (GPSET- UFRGS)",
       dates: "August 2018 - September 2019",
       duties: [
         "Scientific initiation scholarship holder.",
@@ -110,7 +118,7 @@ export const translations = {
     {
       id: "nitec2018",
       order: 7,
-      title: "Innovation Studies Center (NITEC - UFRGS)",
+      title: "Center for Technological Innovation (NITEC - UFRGS)",
       dates: "January 2017 - July 2018",
       duties: [
         'Assistance in the projects "Innovation paths in industry" and "Innovation paths in agribusiness".',
@@ -155,7 +163,7 @@ export const translations = {
     },
     {
       id: "marketing",
-      title: "University of Illinois (Coursera)",
+      title: "University of Illinois",
       field: "Marketing",
       institution: "Coursera",
       dates: "",

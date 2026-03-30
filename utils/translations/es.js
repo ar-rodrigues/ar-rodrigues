@@ -58,10 +58,21 @@ export const translations = {
   ],
   experiences: [
     {
+      id: "agil2026",
+      order: 13,
+      title: "Socio y Director de Tecnología",
+      dates: "Marzo 2026 - Actual",
+      duties: [
+        "Definición de la estrategia tecnológica y del portafolio digital de la firma.",
+        "Dirección de iniciativas de automatización y herramientas que apoyan auditorías y la gestión integral de lineamientos.",
+      ],
+      company: "AGIL",
+    },
+    {
       id: "tksmx2024",
       order: 11,
-      title: "TKS México - Auditorías",
-      dates: "Abril 2024 - Actual",
+      title: "Arquitecto de Soluciones",
+      dates: "Abril 2024 - Marzo 2026 · 2 años",
       duties: [
         "Desarrollo de herramientas para aumentar la productividad y eficiencia de procesos de auditorías.",
         "Desarrollo de herramientas digitales para automatización de procesos de la empresa.",
@@ -70,29 +81,26 @@ export const translations = {
       company: "TKS México",
     },
     {
-      id: "freelancer2021",
-      order: 10,
-      title: "Freelancer",
+      id: "consultant2021",
+      order: 12,
+      title: "Consultor",
       dates: "Octubre 2021 - Actual",
       duties: [
-        "Creé y desarrollé sitios web responsivos y fáciles de usar, adaptados a los objetivos y la identidad de marca de los clientes.",
-
-        "Colaboración con clientes y equipos para crear experiencias digitales visualmente atractivas y funcionales.",
-        "Aseguré alto rendimiento, responsividad móvil y compatibilidad entre navegadores en todos los proyectos.",
+        "Ayudo a las organizaciones a mapear procesos, identificar oportunidades de automatización y crecimiento, y desarrollo plataformas web y móviles a medida alineadas con sus necesidades estratégicas para impulsar la escalabilidad del negocio.",
       ],
-      company: "Freelancer",
+      company: "Consultor",
     },
     {
       id: "gpset2019",
       order: 9,
       title:
-        "Grupo De Investigación Sociedad, Economía Y Trabajo (GPSET- UFRGS)",
+        "Grupo de Investigación Sociedad, Economía y Trabajo (GPSET- UFRGS)",
       dates: "Agosto 2018 - Septiembre 2019",
       duties: [
         "Becario de iniciación científica.",
-        'Colaboré ​​en el proyecto "Acción emprendedora en pequeñas y medianas empresas de base tecnológica".',
+        'Colaboré en el proyecto "Acción emprendedora en pequeñas y medianas empresas de base tecnológica".',
         "Desarrollé actividades de investigación como entrevistas, reportajes y tareas administrativas.",
-        'Elaboré ​​y presente el trabajo "Un estudio etnográfico sobre la acción emprendedora en startups, Brasil y México" en el Salón de Iniciación Científica de la UFRGS.',
+        'Elaboré y presenté el trabajo "Un estudio etnográfico sobre la acción emprendedora en startups, Brasil y México" en el Salón de Iniciación Científica de la UFRGS.',
       ],
       company: "GPSET",
     },
@@ -111,10 +119,10 @@ export const translations = {
     {
       id: "nitec2018",
       order: 7,
-      title: "Centro de Estudios en Innovación (NITEC - UFRGS)",
+      title: "Núcleo de Innovación Tecnológica (NITEC - UFRGS)",
       dates: "Enero 2017 - Julio 2018",
       duties: [
-        'Asistencia en los proyectos "Caminos de innovación en la industria" y "Caminos de innovación en agronegocios".',
+        'Asistencia en los proyectos "Caminos de innovación en la industria" y "Caminos de innovación en el agronegocio".',
         "Asistencia en la difusión de proyectos, informes, presentaciones y tareas administrativas.",
         'Elaboración y presentación de los trabajos "El desarrollo de productos premium en empresas del sector alimentario" y "Agregando valor en el sector alimentario a través de la experiencia del usuario".',
       ],
@@ -156,7 +164,7 @@ export const translations = {
     },
     {
       id: "marketing",
-      title: "University of Illinois (Coursera)",
+      title: "University of Illinois",
       field: "Marketing",
       institution: "Coursera",
       dates: "",

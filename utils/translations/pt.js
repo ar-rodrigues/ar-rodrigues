@@ -58,10 +58,21 @@ export const translations = {
   ],
   experiences: [
     {
+      id: "agil2026",
+      order: 13,
+      title: "Sócio e Diretor de Tecnologia",
+      dates: "Março 2026 - Atual",
+      duties: [
+        "Definição da estratégia tecnológica e do portfólio digital da firma.",
+        "Direção de iniciativas de automação e ferramentas que apoiam auditorias e a gestão integral de diretrizes.",
+      ],
+      company: "AGIL",
+    },
+    {
       id: "tksmx2024",
       order: 11,
-      title: "TKS México - Auditorias",
-      dates: "Abril 2024 - Atual",
+      title: "Arquiteto de Soluções",
+      dates: "Abril 2024 - Março 2026 · 2 anos",
       duties: [
         "Desenvolvimento de ferramentas para aumentar a produtividade e eficiência de processos de auditorias.",
         "Desenvolvimento de ferramentas digitais para automação de processos da empresa.",
@@ -70,17 +81,14 @@ export const translations = {
       company: "TKS México",
     },
     {
-      id: "freelancer2021",
-      order: 10,
-      title: "Freelancer",
+      id: "consultant2021",
+      order: 12,
+      title: "Consultor",
       dates: "Outubro 2021 - Atual",
       duties: [
-        "Criei e desenvolvi sites responsivos e fáceis de usar, adaptados aos objetivos e à identidade da marca dos clientes.",
-
-        "Colaboração com clientes e equipes para criar experiências digitais visualmente atraentes e funcionais.",
-        "Assegurei alto desempenho, responsividade móvel e compatibilidade entre navegadores em todos os projetos.",
+        "Auxilio organizações no mapeamento de processos, identificação de oportunidades de automação e crescimento, desenvolvendo plataformas web e mobile personalizadas e alinhadas às suas necessidades estratégicas para impulsionar a escalabilidade do negócio.",
       ],
-      company: "Freelancer",
+      company: "Consultor",
     },
     {
       id: "gpset2019",
@@ -155,7 +163,7 @@ export const translations = {
     },
     {
       id: "marketing",
-      title: "University of Illinois (Coursera)",
+      title: "University of Illinois",
       field: "Marketing",
       institution: "Coursera",
       dates: "",

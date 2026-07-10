@@ -920,14 +920,14 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 2.5rem;
   padding-left: 4rem;
   padding-right: 4rem;
 }
 
 @media screen and (min-width: 768px) {
   .portf-list {
-    gap: 4rem;
+    gap: 2.5rem;
     padding-left: 5rem;
     padding-right: 5rem;
   }
@@ -935,7 +935,7 @@ html {
 
 @media screen and (min-width: 1024px) {
   .portf-list {
-    gap: 2.5rem;
+    gap: 2rem;
     padding-left: 4rem;
     padding-right: 4rem;
   }
@@ -949,22 +949,12 @@ html {
   text-align: center;
   flex: 0 0 auto;
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .portf-item:hover {
   transform: translateY(-5px);
-}
-
-.portf-item h4 {
-  margin-bottom: 1.5rem;
-  color: #223f99;
-  font-weight: 600;
-  min-height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .portf-item a {
@@ -985,11 +975,11 @@ html {
 
 .portf-item img {
   width: 100%;
-  max-width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border-radius: 0.75rem;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   background: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -997,7 +987,24 @@ html {
 
 .portf-item:hover img {
   box-shadow: 0 8px 25px rgba(34, 63, 153, 0.2);
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+
+.portf-item h4 {
+  margin: 1rem 0 0.4rem;
+  color: #223f99;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.portf-desc {
+  margin: 0;
+  max-width: 280px;
+  color: #3d4a5c;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 767px) {
@@ -1006,8 +1013,6 @@ html {
   }
 
   .portf-item img {
-    max-width: 180px;
-    height: 180px;
     margin-inline: auto;
   }
 

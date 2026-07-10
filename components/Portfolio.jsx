@@ -7,9 +7,9 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 function Portfolio() {
   const { t } = useLanguage();
   const portfolio = t("portfolio");
-  const { ref, isVisible, isLeaving } = useScrollAnimation({ 
+  const { ref, isVisible, isLeaving } = useScrollAnimation({
     threshold: 0.1,
-    triggerOnce: false 
+    triggerOnce: false,
   });
 
   return (
@@ -22,10 +22,11 @@ function Portfolio() {
       <div className="portf-list">
         {portfolio.map((item) => (
           <div key={item.id} className="portf-item">
-            <h4>{item.title}</h4>
             <a href={item.url} target="_blank" rel="noreferrer">
               <img src={item.image} alt={item.alt} />
             </a>
+            <h4>{item.title}</h4>
+            <p className="portf-desc">{item.description}</p>
           </div>
         ))}
       </div>

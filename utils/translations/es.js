@@ -57,17 +57,17 @@ export const translations = {
     },
   ],
   experiences: [
-    {
-      id: "agil2026",
-      order: 13,
-      title: "Socio y Director de Tecnología",
-      dates: "Marzo 2026 - Actual",
-      duties: [
-        "Definición de la estrategia tecnológica y del portafolio digital de la firma.",
-        "Dirección de iniciativas de automatización y herramientas que apoyan auditorías y la gestión integral de lineamientos.",
-      ],
-      company: "AGIL",
-    },
+    // {
+    //   id: "agil2026",
+    //   order: 13,
+    //   title: "Socio y Director de Tecnología",
+    //   dates: "Marzo 2026 - Actual",
+    //   duties: [
+    //     "Definición de la estrategia tecnológica y del portafolio digital de la firma.",
+    //     "Dirección de iniciativas de automatización y herramientas que apoyan auditorías y la gestión integral de lineamientos.",
+    //   ],
+    //   company: "AGIL",
+    // },
     {
       id: "tksmx2024",
       order: 11,
@@ -213,32 +213,48 @@ export const translations = {
   portfolio: [
     {
       id: "contru-sistemas-ligeros",
-      title: "Landing Page",
+      title: "Constru Sistemas Ligeros",
+      description:
+        "Landing page de proveedor de materiales para construcción ligera en Puebla, con cotización en línea.",
       url: "https://construsistemasligeros.com/",
       image: "/contru-sistemas-ligeros.png",
-      alt: "Sitio web Contru Sistemas Ligeros",
+      alt: "Sitio web Constru Sistemas Ligeros",
     },
     {
       id: "dica-auditofin",
-      title: "Aplicación Web Progresiva",
+      title: "Dica México",
+      description:
+        "Aplicación web progresiva de auditoría financiera para operaciones de Dica México.",
       url: "https://dica-auditofin.vercel.app/",
       image: "/dica-mx.png",
-      alt: "Sitio web Dica Auditofin",
+      alt: "Sitio web Dica México - auditoría financiera",
     },
     {
-      id: "dica-mobile",
-      title: "Aplicación Móvil Nativa",
-      url: "https://apps.apple.com/us/app/dica-m%C3%A9xico/id6742845335",
-      image:
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/de/4e/e8/de4ee8ce-9a63-7dd6-d2a1-8a4595e1eeaa/IMG_5998x1320.png/300x650bb.webp",
-      alt: "Aplicación móvil Dica México",
+      id: "faro-politico",
+      title: "Faro Político",
+      description:
+        "Plataforma de análisis electoral con IA: mapa interactivo y datos oficiales del INE.",
+      url: "https://faro.agilsolutions.lat/",
+      image: "/faro-politico.png",
+      alt: "Faro Político - Plataforma de análisis electoral de México con IA",
     },
     {
       id: "rancic-armatura",
-      title: "Sitio corporativo - Armatura",
+      title: "Armatura (Rancic Software)",
+      description:
+        "Sitio corporativo para el control de procesamiento y producción de acero.",
       url: "https://rancic-site.vercel.app/en",
       image: "/rancic.png",
       alt: "Rancic Software - Sitio web de Armatura, control de procesamiento y producción de acero",
+    },
+    {
+      id: "parallelo-consultoria",
+      title: "Parallelo Consultoría",
+      description:
+        "Consultoría en cumplimiento preventivo STPS, certificaciones VDA y reclutamiento especializado.",
+      url: "https://www.paralleloconsultoria.com/",
+      image: "/parallelo-consultoria.png",
+      alt: "Parallelo Consultoría - Cumplimiento preventivo, certificaciones VDA y reclutamiento",
     },
   ],
   skills: [
